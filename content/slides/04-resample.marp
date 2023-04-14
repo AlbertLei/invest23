@@ -1,0 +1,79 @@
+---
+marp: true
+theme: gaia
+paginate: true
+math: katex
+---
+
+<style>
+:root {
+  font-family: "Fira Sans", "LXGW WenKai";
+}
+
+h1, h2 {
+  text-align: center;
+  font-size: 1.1em;
+  color: #444;  
+}
+
+h1 {
+  font-size: 1.2em;    
+}
+
+section {
+  color: #222;
+  /*background-color: white; */
+}
+
+b, strong {
+   color: blue;
+}
+
+b, em {
+   color: red;
+}
+
+
+.columns {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+</style>    
+
+<!-- _theme: reveal -->
+<br><br>
+
+# Resampling methods
+
+<center>
+
+Instructor: Haoran LEI
+
+Hunan University
+
+</center>
+
+---
+
+# Resampling methods
+
+- We discuss two *resampling* methods:
+   - _cross-validation_ and the _bootstrap_.
+
+- Basically, in econometrics all the data we have is called a *sample*, the word *"resample"* means that we (re)select sub-data from the data we have.
+
+- Specifically, resampling methods **refit a model** of interest **to samples 
+formed from the training set**, in order to obtain additional
+information about the fitted model such as
+  1. estimates of test-set prediction error
+  1. the standard deviation and bias of our
+parameter estimates
+
+---
+
+# Training Error versus Test error
+
+
+

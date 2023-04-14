@@ -1,0 +1,374 @@
+---
+marp: true
+theme: gaia
+paginate: true
+math: katex
+---
+
+<style>
+:root {
+  font-family: "Fira Sans", "LXGW WenKai";
+}
+
+h1, h2, h3 {
+  text-align: center;
+}
+
+h1 {
+  font-size: 1.1em;
+  color: #555;    
+}
+
+h2, h3 {
+  font-size: 1em;
+  font-weight: normal;
+}
+
+b, strong {
+   color: blue;
+}
+
+b, em {
+   color: red;
+}
+
+.columns {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+</style>    
+  
+
+<!-- _theme: reveal -->
+<br><br>
+
+# Introduction to Linear Regression
+
+# Labor Economics
+
+
+## Instructor: Haoran LEI
+
+## Hunan University
+
+
+---
+
+# Review
+
+- Supervised Learning: 
+  - Nearest neighbor, Linear regression
+
+- Tradeoffs:
+  1. Prediction **accuracy** versus **interpretability**.
+  2. **Good fit** versus **over-fit** or **under-fit**.
+  3. **Parsimony** versus **black-box**
+
+---
+
+# Review: Bias-variance tradeoff
+
+
+- In (most) models, we can **reduce the variance of the parameter estimated across samples** by **increasing the bias** in the estimated parameters.
+
+- Homework: Explain the three plots.
+
+<!-- - [Tutorial on The Bias Variance Tradeoff](https://mlu-explain.github.io/bias-variance/)
+ -->
+
+---
+
+
+# Linear regression
+
+- Linear regression is (perhaps) the simplest approach to supervised learning.
+
+- It assumes that the dependence of $Y$ on
+$X_1, \dots, X_p$ are linear.  
+
+- True regression functions are (almost) never linear.
+
+
+---
+
+
+Although it may seem overly simplistic, linear regression is
+extremely useful both conceptually and practically.  
+![width:1000](fig/linear-eg)
+
+
+<!-- ---
+
+# Linear regression for the advertising data
+
+- Is there a relationship between advertising budget and
+sales?
+
+- How strong is the relationship between advertising budget
+and sales?
+
+- Which media contribute to sales?
+
+- How accurately can we predict future sales?
+
+- Is the relationship linear? -->
+
+---
+
+<!-- Advertising data  
+![](fig/ads.png)  
+
+
+---  -->
+
+# Linear regression with a single predictor $X$
+
+- Model: $Y = \beta_0 + \beta_1 X + \epsilon$
+
+- $\beta_0$ and $\beta_1$ are two unknown constants that represent the *intercept* and *slope*.
+
+- Given some estimates $\hat \beta_0$ and $\hat \beta_1$, we make the predictions:
+$$
+\hat y = \hat \beta_0 + \hat \beta_1 x
+$$
+- where $\hat y$ indicates a prediction of $Y$ given $X = x$.  
+The hat symbol $\,\hat{}\,$  denotes an **estimated value**.
+
+---
+
+# Least squares
+
+- Let $\hat y_i = \hat \beta_0 + \hat \beta_1 x_i$ be the prediction for $Y_i$.
+
+- The $i$-th residual: $e_i = y_i - \hat y_i$.
+
+- Define the **residual sum of squares (RSS)**:
+$$
+\begin{align*}
+RSS &= (e_1)^2 + \dots  + (e_n)^2 \\
+    &= (y_1 - \hat \beta_0 - \hat \beta_1 x_1)^2 + \dots + (y_n - \hat \beta_0 - \hat \beta_1 x_n)^2
+\end{align*}
+$$
+
+---
+
+# Least squares
+
+- Let $\hat y_i = \hat \beta_0 + \hat \beta_1 x_i$ be the prediction for $Y_i$.
+
+- The $i$-th residual: $e_i = y_i - \hat y_i$.
+
+- Define the **residual sum of squares (RSS)**:
+$$
+\begin{align*}
+\textsf{RSS} &= (e_1)^2 + \dots  + (e_n)^2 \\
+    &= (y_1 - \hat \beta_0 - \hat \beta_1 x_1)^2 + \dots + (y_n - \hat \beta_0 - \hat \beta_1 x_n)^2
+\end{align*}
+$$
+
+**Least squares:** choose $\hat\beta_0$, $\hat\beta_1$ to minimize RSS.  
+(Or minimizing $\text{MSE}_{\textsf{Tr}}$ as we've seen in previous lecture slides)
+
+---
+
+# Least squares
+
+The estimated values that minimize RSS are: 
+$$
+\Bigg\{ \begin{align*}
+\hat \beta_1 &= 
+  \frac{\sum_i (x_i - \bar x)(y_i - \bar y)}
+    {\sum_i (x_i - \bar x) ^ 2}\\
+\hat \beta_0 &= 
+  \bar y - \hat \beta_1 \bar x
+\end{align*}
+$$
+where $\bar x = \sum_i x_i/n$ and
+$\bar y = \sum_i y_i/n$ are the sample means.
+
+
+---
+
+## ![width:600](fig/LS.gif)
+
+## Animation of LS regression line
+
+---
+**Example (advertising data)**
+
+## ![width:550](fig/ls-ads)  
+
+## Fig: The least squares fit for the regression of sales onto TV.
+
+- A linear fit captures the essence of the relationship,
+but it seems somewhat deficient in the left of the plot.
+
+
+---
+
+# Assessing the Accuracy of the LS Estimates
+
+- The **standard error (SE)** of an estimator reflects how it varies under repeated sampling:  
+$$
+SE(\hat \beta_1) ^ 2 = \frac{\sigma^2}{\sum_{i=1}^n (x_i - \bar x)^2}
+$$
+
+
+- Standard error is not the *variance* of the LS estimator.
+Instead, it measures how **accurate** the LS estimator is. SE depends on:
+
+  1. the variance of noise: $\sigma^2$
+  1. how "spread" our datas are: $\sum_{i=1}^n (x_i - \bar x)^2$ 
+
+
+---
+
+# Assessing the Accuracy of the LS Estimates
+
+- The **standard error (SE)** of an estimator reflects how it varies under repeated sampling:  
+$$SE(\hat \beta_1) ^ 2 = \frac{\sigma^2}{\sum_{i=1}^n (x_i - \bar x)^2},
+SE(\hat \beta_0) ^ 2 = \sigma^2 [\frac 1n + \frac{\bar x^2}{\sum_i (x_i - \bar x)^2}]$$ 
+
+
+- Note: When $\sigma^2$ (variance of $\epsilon$) is unknown, use    
+$$\hat\sigma^2 = \frac{1}{n-1} \sum_i e_i^2$$
+
+---
+
+# Confidence interval
+
+- A **95% confidence interval** is defined as a range of
+values such that
+*"with 95% probability, the range will contain the true unknown value of the parameter."* 
+
+- It has the form:
+$$
+[\hat \beta_1-2\cdot \text{SE} (\hat\beta_1), \hat \beta_1 + 2\cdot \text{SE} (\hat\beta_1)]
+$$
+
+A popular way of describing confidence intervals:
+
+- "I am 95% confident that the interval contains the true value."
+
+---
+
+# Hypothesis testing
+
+- **Standard errors** can also be used to perform _hypothesis testing_.
+
+- The most common _hypothesis test_
+involves testing the null hypothesis $H_0$ vs the alternative hypothesis $H_A$:
+$$
+H_0: \text{ There is no relationship between } X \text{ and } Y
+$$
+$$
+H_A: \text{ There is some relationship between } X \text{ and } Y
+$$
+
+---
+
+# Hypothesis testing
+
+- **Standard errors** can also be used to perform _hypothesis testing_.
+
+- The most common _hypothesis test_
+involves testing the null hypothesis $H_0$ vs the alternative hypothesis $H_A$:
+$$
+H_0: \beta_1 = 0, \quad H_A: \beta_1 \ne 0
+$$
+
+- To test the null hypothesis, we compute a *t-statistic* given by:   
+$$
+t = \frac{\hat\beta_1 - 0}{SE(\hat \beta_1)}
+$$
+
+---
+
+# Hypothesis testing
+
+- Assuming $\beta_1=0$ (ie, $H_0$ holds), then $t = \frac{\hat\beta_1 - 0}{SE(\hat \beta_1)}$
+will follow the **t-distribution with $n − 2$ degrees of freedom**. 
+
+---
+
+# Hypothesis testing
+
+- Assuming $\beta_1=0$ (ie, $H_0$ holds), then $t = \frac{\hat\beta_1 - 0}{SE(\hat \beta_1)}$
+will follow the **t-distribution with $n − 2$ degrees of freedom**. 
+
+
+
+
+- Using statistical software, it is easy to compute the probability of observing *any value equal or larger than $|t|$*. 
+  - We call this probability the *p-value*.
+
+
+---
+
+- In practice, usually we say that the effects of $X$ is significant (rejecting $H_0$) when the p-value is less than $0.05$.    
+![width:800](fig/pvalue)  
+
+- You can see from the figure that *p-values* and *confidence intervals* are just two sides of the same coin.
+
+---
+
+# Results for the advertising data
+
+
+```
+            Coefficient Std. Error   t-statistic     p-value
+Intercept        7.0325     0.4578         15.36    < 0.1%
+TV               0.0475     0.0027         17.67    < 0.1%
+```
+
+---
+
+# Assessing the Overall Accuracy of the Model
+
+- We compute the **Residual Standard Error** (**RSE**):
+$$
+\textsf{RSE} = \sqrt{\frac{1}{n-2} \textsf{RSS}}  
+$$
+
+- RSE is to RSS what standard error is to variance.  
+
+---
+
+# Assessing the Overall Accuracy of the Model
+
+
+- _R-squared_ is the  fraction of variance explained:
+$$
+R^2 = \frac{TSS - RSS}{TSS} = 1- \frac{RSS}{TSS}
+$$
+
+- where TSS $=\sum_ie_i^2 =\sum_i (y_i - \bar y)^2$ is the total sum of squares.
+
+In the simple linear regression setting with one predictor, $R^2 = r^2$ where $r$ is the (linear) correlation between $X$ and $Y$.
+
+---
+
+# Advertising data results
+
+<center>
+
+|Quantity    |   Value|
+| -------- | ----- |
+|Residual Standard Error | 3.26|
+|$R^2$                   |    0.612|
+<!-- |F-statistic         |     312.1| -->
+
+</center>
+
+
+---
+
+# Next: Multiple Linear Regression
+
+
+We have focused on the simple linear regression model with one predictor.
+
+Now let's move on to Multiple Linear Regression;
+aka, linear regression with multiple predictors!

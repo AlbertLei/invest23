@@ -1,0 +1,150 @@
+---
+marp: true
+theme: gaia
+paginate: true
+math: katex
+---
+
+<style>
+:root {
+  font-family: "Fira Sans", "LXGW WenKai";
+}
+h1, h2, h3 {
+  text-align: center;
+}
+
+h1 {
+  font-size: 1.1em;
+  color: #555;    
+}
+
+h2, h3 {
+  font-size: 1em;
+  font-weight: normal;
+}
+
+
+
+section {
+  color: #222;
+  /*background-color: white; */
+}
+
+b, strong {
+   color: blue;
+}
+
+em {
+   color: red;
+}
+
+
+.columns {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+</style>    
+
+
+<br>
+<br>
+
+# Course Introduction
+
+# 金融投资学
+
+<br>
+
+## Instructor: Haoran LEI
+
+## Hunan University
+
+---
+
+# About this course
+
+- This course aims at providing an introductory and broad overview of the field of **machine learning** with the focus on applications on Finance. 
+
+- We will first discuss the ideas and tools in the machine learning literature, and then discuss their applications to finance.
+
+---
+
+# Motivating example: measuring **risk premiums**
+
+- One of the major problems of finance is to measure the
+**risk premium (风险溢价)** of various assets.
+  - Eg: The risk premium puzzle
+
+- For decades, financial economists have been using various econometric/statistical tools ro attack the problem of 
+measuring risk premiums.
+
+- In recent years, researchers have found that *machine learning-based methods*  have a large advantage over
+*regression-based strategies*.
+
+---
+
+# Empirical Asset Pricing via Machine Learning
+
+![width:1150px](fig/abstract1.png)
+
+- Gu, Kelly and Xiu (2020)
+
+---
+
+# Machine learning and finance
+
+
+- "Financial economics is a highly empirical discipline, perhaps the most empirical among the branches of economics and even among the social sciences,"
+--- *The Econometrics of Financial Markets*, Campbell, Lo, and MacKinlay (*CLM*, 1996)
+
+
+Readings:
+
+- *An Introduction to Statistical Learning (with Applications in R)*,
+James, Witten, Hastie and Tibshirani (2021).
+  - We will call it *ISLR* in this course.
+
+
+- *Empirical asset pricing: Models and methods*,
+Ferson (2019). 
+
+---
+
+<center>
+
+![width:310px](fig/islr.png)   
+ISLR
+
+</center>
+
+---
+
+# About me
+
+- Name: Haoran LEI (雷浩然)
+
+- Email: hlei AT hnu.edu.cn
+
+- QQ group: **545 887 882**
+
+---
+
+# Course evaluation
+
+
+- **One presentation** and **two to three homeworks**
+
+- A **referee report** or a research proposal
+
+
+---
+
+# 同学自我介绍
+
+每位同学简单介绍一下你的:
+
+- **姓名** (例: 雷浩然)
+- **家乡** (例: 湖北武汉)
+- **本科专业**
+- 是否有**金融或编程**的相关课程经验

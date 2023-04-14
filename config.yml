@@ -1,0 +1,6 @@
+baseURL: '/'
+title: '金融投资2023'
+languageCode: 'en-us'
+markup:
+  highlight:
+    style: solarized-light

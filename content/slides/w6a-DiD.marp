@@ -1,0 +1,283 @@
+---
+marp: true
+theme: gaia
+paginate: true
+math: katex
+---
+
+<style>
+:root {
+  font-family: "Fira Sans", "LXGW WenKai";
+  font-size: 32px;
+}
+h1, h2, h3 {
+  text-align: center;
+}
+
+h1 {
+  font-size: 1.1em;
+  color: #555;    
+}
+
+h2, h3 {
+  font-size: 1em;
+  font-weight: normal;
+}
+
+section {
+  color: #222;
+  /*background-color: white; */
+}
+
+b, strong {
+   color: blue;
+}
+
+b, em {
+   color: red;
+}
+
+.columns {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+</style>    
+
+<!-- _theme: reveal -->
+<br><br>
+
+#  Difference-in-Differences
+
+# Labor economics
+
+## Instructor: Haoran LEI
+
+## Hunan University
+
+---
+
+# Introduction: DiD and panel data
+
+- _Difference-in-differences_ (_DiD_) is one of the most popular strategies for **estimating the average treatment effect** of some policy or shock.
+
+- To use DiD, we need at least two time periods: one before the treatment and one after. This requires _panel data_.
+  - In _panel data_ (also called longitudinal data), we observe a number of individuals across many years.
+  - Eg: National Longitudinal Survey of Youth, China Health and Retirement Longitudinal Study (CHARLS)
+
+
+---
+
+# Motivation
+
+- We want to estimate the
+effect of a policy/shock across groups.
+
+- However, the policy assignment is not
+necessarily uncorrelated with group
+characteristics. (Ie, *random assignment* fails)
+
+- How can we **identify the effect** of the policy
+**without being confounded by the individual-level
+differences**?
+
+---
+
+# Canonical DiD
+
+In the canonical DiD model, we have:
+
+- **Two periods**: treatment occurs (for some units) in period 2
+
+- Identification of the _average treatment effect of the treated_ (_ATT_) from **parallel trends** and **no anticipation**
+
+
+---
+
+
+# Setup
+
+- **Panel data** on $Y_{i\color{red} t}$ for $i=1,...,N$ and
+$\color{red} t=1,2$
+
+- **Treatment timing**: Some units ($D_i = 1$) are treated in period 2; everyone else is not ($D_i = 0$)
+
+---
+
+# Setup
+
+- **Panel data** on $Y_{i\color{red} t}$ for $i=1,...,N$ and
+$\color{red} t=1,2$
+
+- **Treatment timing**: Some units ($D_i = 1$) are treated in period 2; everyone else is not ($D_i = 0$)
+
+- **Potential outcomes**: $Y_{it}(1)$ for the treated individuals and $Y_{it}(0)$ for the non-treated.
+In period 2, we can only observe:
+$$
+Y_{i2} = Y_{i2}(1) D_i + Y_{i2}(0) (1-D_i) .
+$$
+
+- Estimand: ATT (Average Treatment effect of the Treated)
+$$
+\tau_{ATT} = \mathbb E [Y_{i2} (1) - Y_{i2} (0) | D_i=1]
+$$
+
+
+---
+
+# Key identifying assumptions
+
+**Parallel trends**:
+$$
+E [Y_{i2} (0) − Y_{i1} (0) | D_i = 1] = E [Y_{i2}(0) − Y_{i1}(0)| D_i = 0]
+$$
+
+- In the absence of the treatment, the $Y_{it}$ across units evolve in parallel. That is, individuals/units may have different levels,  but their changes would evolve in parallel.
+
+---
+
+# Key identifying assumptions
+
+**Parallel trends**:
+$$
+E [Y_{i2} (0) − Y_{i1} (0) | D_i = 1] = E [Y_{i2}(0) − Y_{i1}(0)| D_i = 0]
+$$
+
+**No anticipation**: $Y_{i1}(1) = Y_{i1}(0)$
+
+- Intuitively, outcome in period 1 isn’t affected by treatment status in period 2
+
+- This assumption is often left implicit in notation, but important for interpreting DiD estimand as a causal effect in period 2.
+
+---
+
+# Identification
+
+Under **parallel trends** and **no anticipation**,
+$$
+\tau_{ATT} =
+(\mathbb E[Y_{i2} | {\color{red}D_i = 1}] − \mathbb E[Y_{i1} | {\color{red}D_i = 1}])
+-
+(\mathbb E[Y_{i2} | {\color{blue}D_i = 0}] − \mathbb E[Y_{i1} | {\color{blue}D_i = 0}])
+$$
+
+- The first difference is Change for treated.
+
+- The second difference is Change for untreated/control.
+
+- [Figure illustration online](https://bookdown.org/paul/applied-causal-analysis/basics.html)
+
+In plain words, the estimand of interest (ATT) is equal to the 
+“difference-in-differences” of population means.
+
+
+---
+
+# Estimation
+
+1. Use sample analogs:
+$$
+\hat{τ}_{DiD} = (\bar Y _{12} - \bar Y _{11})
+-
+(\bar Y _{02} - \bar Y _{01})
+= \Delta Y_{1t} - \Delta Y_{0t} 
+$$
+
+
+- Intuitively, we generate a counterfactual for the treatment using the changes in the untreated units: $E(Y _{i1} − Y _ {i0} | D_i = 0)$.
+
+---
+
+# Estimation
+
+
+2. Equivalently, 
+$\hat{τ}_{DiD}$ is equal to the OLS coefficient $\hat β$ from
+$$
+Y_{it} = \alpha_i + \phi_t + \beta D_{it}  + \epsilon_{it}
+$$
+where $D_{it} =1$ if $D_i=1$ and $t=2$; otherwise, $D_{it} = 0$.
+
+- $\hat{τ}_{DiD}$ is sometimes referred to as the _Two-way Fixed Effects estimator_ (_TWFE_). That is,
+the setup includes both unit fixed effects ($α_i$) 
+and time fixed effects ($\phi_t$).
+
+---
+
+# Cases of DiD
+
+1 treatment timing, Binary treatment, 2 periods
+- Card and Krueger (AER, 1994)
+
+1 treatment timing, Binary treatment, T periods
+- Yagan (AER, 2015)
+
+1 treatment timing, Continuous treatment
+- Berger, Turner and Zwick (JF, 2020)
+
+Staggered treatment timing, Binary treatment
+- Bailey and Goodman-Bacon (AER, 2015)
+
+---
+
+
+# Card and Krueger (1994)
+
+
+- Card and Krueger (1994) study the impact of New Jersey increasing the minimum
+wage 4.25 to 5.05 dollars an hour on April 1, 1992
+
+- Key question is what impact does this have on employment?
+  - Need a counterfactual for NJ, and use Pennsyvania as a control
+
+
+- Collected data in 410 fast food restaurants
+  - Called places and asked for employment and starting wage data
+  - Sample data from Feb 1992 and Nov 1992
+
+
+- So $D_i$ is NJ vs PA, and $t = 1$ is Feb 1992 and $t = 2$ is Nov 1992.
+
+---
+
+# Stark Effect on Wages in Card and Krueger (1994)
+
+![width:1200](fig/kruger1994.png)
+
+
+
+---
+
+# Effect on Employment in Card and Krueger (1994)
+
+
+Despite a large increase in wages,
+**no negative impact on employment**
+- In fact, marginally significant positive
+impact
+
+Looking at raw data, this positive impact
+is driven by a decline in PA
+- This decline is reasonable if you think
+that PA is a good counterfactual, since
+1992 is in the middle of a recession
+
+
+A second comparison can be run with
+stores whose starting wage in
+pre-period was above treatment cutoff
+- These stores perform similarly to PA
+
+
+---
+
+# Key considerations for thinking about Card and Krueger (1994)
+
+
+- The treatment can’t really be thought of as randomly assigned
+  - Treatment is completely correlated within states
+  - As a result, any within-state correlation of errors will be correlated with treatment status
+
+- Given the limited number of states, time periods, and treatments, more valuable to
+view this as a case study.
