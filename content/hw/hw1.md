@@ -1,5 +1,8 @@
 # 作业 1
 
+作业一[在线提交地址](https://workspace.jianguoyun.com/inbox/collect/c45b72070ad54b349b5ab5bd9877e76c/submit)
+
+
 1. 为什么我们在使用 Validation dataset 进行模型筛选后, 还要用另外的 Test dataset 来评估模型的预测精度? 为什么直接用 Validation dataset 来评估模型精度, 得到的结果会是有偏的?
 
     - 注: 实际应用中, 模型在 Validation dataset 上和 Test dataset 上的表现常常相差甚远. 以预测股票涨跌为例, 我们选择的模型可能在 Validation dataset 上的准确率超过 70%, 但在Test dataset 上的准确率只有不到 60%.
