@@ -46,7 +46,7 @@ b, em {
 
 # Introduction to Linear Regression
 
-# Labor Economics
+# 金融投资学
 
 
 ## Instructor: Haoran LEI
@@ -196,6 +196,7 @@ $\bar y = \sum_i y_i/n$ are the sample means.
 ## Animation of LS regression line
 
 ---
+
 **Example (advertising data)**
 
 ## ![width:550](fig/ls-ads)  
