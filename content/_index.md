@@ -12,7 +12,7 @@ by Gareth James, Daniela Witten, Trevor Hastie, Robert Tibshirani.
 [豆瓣页面](https://book.douban.com/subject/21706191/).
 
 - 英文第二版 [PDF](https://hastie.su.domains/ISLR2/ISLRv2_website.pdf)
-- 我们主要参考这本教材. 这里是该书官方[网站的链接](https://www.statlearning.com). 境外网站, 可能需要科学上网
+- 我们主要参考这本教材. 这里是该书官方[网站的链接](https://www.statlearning.com) (境外网站, 可能需要科学上网)
 - 第一版中文翻译 [PDF](https://hlei.lanzouf.com/iu7Qn0t6uqob)
 
 
@@ -34,9 +34,15 @@ by John Hull.
 [source](slides/w1c-intro-stat-learning.marp).
 
 4月21: 线性模型 
-- 一元回归, 多元回归, 超越线性模型
+- 一元回归 [PDF](slides/w2a-linear-regression.pdf), [source](slides/w2a-linear-regression.marp);
+[最小二乘动图](slides/fig/LS.gif);
+多元回归 [PDF](slides/w2b-multi-linear.pdf),
+[source](slides/w2b-multi-linear.marp) 
+超越线性模型
 
 
 ## 作业
 
 - [作业一](hw/hw1)
+
+- 作业二
