@@ -23,22 +23,39 @@ by John Hull.
 
 ## 投影片
 
-4月14: 统计学习简介
+4月14: 统计学习简介 (ISLR Ch2)
 - 课程说明 [PDF](slides/w1a-course-intro.pdf),
 [source](slides/w1a-course-intro.marp);
-监督学习与非监督学习
+- 监督学习与非监督学习
 [PDF](slides/w1b-intro-stat.pdf),
 [source](slides/w1b-intro-stat.pdf);
-监督学习简介, bias-variance tradeoff
+- 监督学习简介, bias-variance tradeoff
 [PDF](slides/w1c-intro-stat-learning.pdf),
 [source](slides/w1c-intro-stat-learning.marp).
 
-4月21: 线性模型 
+
+4月21: 线性模型 (ISLR Ch3)
 - 一元回归 [PDF](slides/w2a-linear-regression.pdf), [source](slides/w2a-linear-regression.marp);
 [最小二乘动图](slides/fig/LS.gif);
-多元回归 [PDF](slides/w2b-multi-linear.pdf),
+- 多元回归 [PDF](slides/w2b-multi-linear.pdf),
 [source](slides/w2b-multi-linear.marp) 
-超越线性模型
+
+
+4月28: 模型选择, 收缩 Shrinkage (ISLR Ch6)
+
+- 模型选择简介, 常见筛选准则 [PDF](slides/w3a-model-selection.pdf), [source](slides/w3a-model-selection.marp)
+- R 语言简介
+[online](notes/w3-intro2R.html),
+[PDF](notes/w3-intro2R.pdf),
+[source](notes/w3-intro2R.qmd)
+- 统计学实验: Shrinkage, James-Stein 统计量
+[online](notes/w3-JS.html),
+[PDF](notes/w3-JS.pdf),
+[source](notes/w3-JS.qmd)
+
+
+<!-- 再抽样, 交叉验证 -->
+
 
 
 ## 作业
