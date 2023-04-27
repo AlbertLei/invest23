@@ -21,7 +21,7 @@ by John Hull.
 
 - 英文第二版 [PDF](notes/ml_john_jull.pdf)
 
-## 投影片
+## 课堂资料
 
 4月14: 统计学习简介 (ISLR Ch2)
 - 课程说明 [PDF](slides/w1a-course-intro.pdf),
