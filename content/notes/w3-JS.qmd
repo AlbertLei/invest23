@@ -1,5 +1,5 @@
 ---
-title: "Bias-variance tradeoff"
+title: "JS Estimator"
 author: "Hunan U"
 format: html
 number-sections: true
@@ -37,9 +37,6 @@ the second observation $z_2$ is drawn from the normal distribution with mean $μ
 
 - Note that for each candidate $\mu$, we have only **one measurement** $z$, which is composed of
 $N$ numbers, $(z_1,\dots, z_N)$.
-
-
-
 
 
 Question: How to obtain a good estimate of

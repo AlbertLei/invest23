@@ -11,9 +11,11 @@
 by Gareth James, Daniela Witten, Trevor Hastie, Robert Tibshirani.
 [豆瓣页面](https://book.douban.com/subject/21706191/).
 
-- 英文第二版 [PDF](https://hastie.su.domains/ISLR2/ISLRv2_website.pdf)
-- 我们主要参考这本教材. 这里是该书官方[网站的链接](https://www.statlearning.com) (境外网站, 可能需要科学上网)
-- 第一版中文翻译 [PDF](https://hlei.lanzouf.com/iu7Qn0t6uqob)
+- 英文第二版 [PDF](https://hastie.su.domains/ISLR2/ISLRv2_website.pdf), 书籍官网[链接](https://www.statlearning.com) (境外网站, 可能需要科学上网)
+- 第一版中文翻译 [PDF](https://hlei.lanzouf.com/iu7Qn0t6uqob), 课程视频 [bilibili 链接](https://www.bilibili.com/video/BV1NW41177q4/)
+- 统计计算: 每个章节的末尾, 均有对应的 R 语言实操环节 (R Lab). 如果你写 python,
+可以参考[这个 github 项目](https://github.com/hardikkamboj/An-Introduction-to-Statistical-Learning).
+我们课上只讲 R, 但你可以用任何你喜欢和擅长的工具来完成课程作业.
 
 
 [2] *Machine Learning in Business: An Introduction to the World of Data Science*,
@@ -41,22 +43,32 @@ by John Hull.
 [source](slides/w2b-multi-linear.marp) 
 
 
-4月28: 模型选择, 收缩 Shrinkage (ISLR Ch6)
+4月28: 模型选择, R 语言入门 (ISLR Ch6)
 
 - 模型选择简介, 常见筛选准则 [PDF](slides/w3a-model-selection.pdf), [source](slides/w3a-model-selection.marp)
 - R 语言简介
-[online](notes/w3-intro2R.html),
-[PDF](notes/w3-intro2R.pdf),
+[notes](notes/w3-intro2R.html),
 [source](notes/w3-intro2R.qmd)
-- 统计学实验: Shrinkage, James-Stein 统计量
-[online](notes/w3-JS.html),
-[PDF](notes/w3-JS.pdf),
+
+5月5: 交叉验证, 自助法, 收缩估计 (ISLR Ch5, Ch6)
+
+- R 语言简介: 线性回归
+[notes](notes/lab-linear.html)
+[source](notes/lab-linear.qmd)
+
+- 交叉验证 (Cross-validation)
+[PDF](slides/cv.pdf),
+[source](slides/cv.marp)
+
+- 统计学实验: 自助法
+[notes](notes/lab-boot.html),
+[source](notes/lab-boot.qmd)
+
+- 统计学实验: James-Stein 统计量
+[notes](notes/w3-JS.html),
 [source](notes/w3-JS.qmd)
 
-
-<!-- 再抽样, 交叉验证 -->
-
-
+<!-- 收缩估计 (Shrinkage Estimation) -->
 
 ## 作业
 

@@ -1,0 +1,203 @@
+---
+marp: true
+theme: gaia
+paginate: true
+math: katex
+---
+
+<style>
+:root {
+  font-family: "Fira Sans", "LXGW WenKai";
+}
+
+h1, h2, h3 {
+  text-align: center;
+}
+
+h1 {
+  font-size: 1.1em;
+  color: #555;    
+}
+
+h2, h3 {
+  font-size: 1em;
+  font-weight: normal;
+}
+
+b, strong {
+   color: blue;
+}
+
+b, em {
+   color: red;
+}
+
+.columns {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+</style>    
+
+<!-- _theme: reveal -->
+<br><br>
+
+
+
+# 交叉验证 Cross-validation
+
+# 金融投资学
+
+
+## Instructor: Haoran LEI
+
+## Hunan University
+
+---
+
+# Test-error estimates
+
+- We have discussed model selection methods such as Mallow's $C_p$, AIC and BIC.
+    - These methods try to restore test errors from training errors,
+    by accounting for the degree of model complexity.
+
+- Now we instead consider a class of methods that estimate the test error by _holding out_ a subset of the training observations from the fitting process, and then applying the statistical learning method to those held out observations.
+
+---
+
+# Validation-set approach
+
+- **Randomly divide** the available dataset  into two parts: 
+    - a _training set_ and a _validation set_ (or _hold-out set_).
+
+- Use the training set to train (or fit) the model, 
+and the fitted model is used to predict the responses for the observations in the validation set.
+
+- The resulting __validation-set error__ provides an estimate of the **test error**. This is typically assessed using **MSE** in the case of a *quantitative response*,
+and **misclassification rate** in the case of a _qualitative_ response.
+
+---
+
+# Drawbacks of validation set approach
+
+1. The validation estimate of the test error can be **highly variable**, depending on how we divide the dataset:
+  - The validation estimate depends on precisely which observations are included in the training set (and which observations are included in the validation set).
+
+2. The validation set error may tend to **overestimate** the test error for the model fit on the _entire data set._
+
+---
+
+# $K$-fold Cross-validation
+
+- Widely used approach for estimating test error.
+    - It can be used to _select (the) best model_, and to give an idea of the _test error_ of the final chosen model.
+
+- First, Randomly divide the data into $K$ equal-sized parts.
+- For each $k \in \{1,...,K\}$:
+    - leave out part $k$, fit the model to the other
+$K − 1$ parts combined, and then obtain predictions for the left-out $k$-th part.
+
+---
+
+# K-fold Cross-validation example: $K=5$
+
+Get $MSE_1$
+| 1          | 2     | 3     | 4     | 5     |
+| ---------- | ----- | ----- | ----- | ----- |
+| **Validation** | Train | Train | Train | Train |
+
+$\dots$
+
+Get $MSE_5$:
+| 1          | 2     | 3     | 4     | 5     |
+| ---------- | ----- | ----- | ----- | ----- |
+| Train | Train | Train | Train | **Validation** |
+
+---
+
+# K-fold Cross-validation: details
+
+- Let the $K$ parts be $C_1$,... , $C_K$ with
+$|C_k| = n_k$.
+
+- For each $k \in \{1,...,K\}$, compute
+$MSE_k$ by holding out $C_k$.
+
+- Compute
+$$
+CV_{(K)} = \sum_{k=1}^K \frac{n_k}{n} MSE_k
+$$
+Or $CV_{(K)} = \sum_{k}MSE_k / K$ if the dataset is divided equally. 
+
+
+---
+
+
+# Specialized K-fold Cross-validation: LOOCV
+
+- Setting $K = n$ yields $n$-fold or **leave-one out cross-validation** (**LOOCV**).
+
+- **Advantage of LOOCV:**
+with least-squares linear or polynomial regression, an amazing shortcut makes the _computational cost of LOOCV_ the same as that of _a single model fit_!
+
+
+- **Disadvantage of LOOCV:**
+Typically, LOOCV
+doesn’t _shake up_ the data enough. 
+    - The estimates from each fold are _highly correlated_.
+
+---
+
+# Revisiting bias-variance tradeoff
+
+$K=5$ or $10$ is a better choice for the following reasons:
+
+- Each training set is only $(K − 1)/K$ as big as the original training set, the estimates of test error will typically be biased upward.
+- This bias is minimized when $K = n$ (LOOCV). However, since
+the estimates from each fold are _highly correlated_,
+the estimate of test error has high variance. (**Why?**)
+- $K = 5$ or $10$ provides a good compromise for this bias-variance tradeoff.
+
+---
+
+# Resampling method
+
+- ($K$-fold) Cross-validation is a specilized
+**resampling method**.
+    - For example, when $K=5$, we randomly divide the dataset into two parts (4/5 for training and 1/5 for validation), and we repeat that random division for five times.
+    - Each random division is a resample of the dataset.
+
+- Another popular
+resampling method is **bootstrapping** (**自助法**).
+It uses random sampling _with replacement_, and is used to measure **accuracies of an estimate** (e.g., bias, variance, confidence intervals, etc.) 
+
+
+---
+
+![width:1200px](fig/boot.png)
+**Idea of Bootstrap**
+
+---
+
+# Some history: Bootstrap and Jackknife
+
+- The idea of Bootstrap is developed by **Brad Efron**
+(and Tibshirani), as an improvement of the _Jackknife resampling method_.
+
+- The _Jackknife method_ works by **sequentially deleting one observation** in the data set, then **recomputing the desired statistic.** 
+  - It is both _computationally and conceptually simpler_ than bootstrapping. 
+  Jackknife **allows exact algebra analysis and more orderly** (i.e. the procedural steps are the same over and over again).
+
+---
+
+A recent _econometric paper_ advocating the usage of Jackknife:
+
+["Jackknife Standard Errors for Clustered Regression,"](https://www.ssc.wisc.edu/~bhansen/papers/tcauchy.html)
+by **Bruce Hansen**, 2022.
+
+> *This paper presents a theoretical case for replacement of conventional heteroskedasticity-consistent and cluster-robust variance estimators with jackknife variance estimators, in the context of linear regression with heteroskedastic and/or cluster-dependent observations. We examine the bias of variance estimation, ...*
+
+---
+
+See __统计学实验: 自助法__ for an gentle introduction to bootstrapping.

@@ -15,6 +15,10 @@ Install R and RStudio:
  
 - [Download RStudio Desktop](https://posit.co/download/rstudio-desktop/)
 
+
+For installing some R packages (e.g., ggplot2) on Windows, you also need
+[Rtools](https://cran.r-project.org/bin/windows/Rtools/).
+
 R creates an interactive environment for you to play with data and statistical models.
 If you have no exposure to computer-based statistical computing before, I dare say that learning R will be the **most valuable** experience for you in this course.
 
