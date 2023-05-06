@@ -50,25 +50,26 @@ by John Hull.
 [notes](notes/w3-intro2R.html),
 [source](notes/w3-intro2R.qmd)
 
-5月5: 交叉验证, 自助法, 收缩估计 (ISLR Ch5, Ch6)
+5月5: 交叉验证, 自助法 (ISLR Ch5, Ch6)
 
 - R 语言简介: 线性回归
 [notes](notes/lab-linear.html)
 [source](notes/lab-linear.qmd)
-
 - 交叉验证 (Cross-validation)
 [PDF](slides/cv.pdf),
 [source](slides/cv.marp)
-
 - 统计学实验: 自助法
 [notes](notes/lab-boot.html),
 [source](notes/lab-boot.qmd)
+
+5月12: 收缩估计 Shrinkage Estimation (ISLR Ch6)
 
 - 统计学实验: James-Stein 统计量
 [notes](notes/w3-JS.html),
 [source](notes/w3-JS.qmd)
 
-<!-- 收缩估计 (Shrinkage Estimation) -->
+- LASSO, 岭回归 Ridge Regression
+
 
 ## 作业
 
