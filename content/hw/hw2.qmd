@@ -132,7 +132,6 @@ boot.fn = function(data, index) {
 }
 ```
 
-
 ```{r}
 boot(medv, boot.fn, 1000)
 ```
