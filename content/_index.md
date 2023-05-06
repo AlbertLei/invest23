@@ -74,4 +74,4 @@ by John Hull.
 
 - [作业一](hw/hw1)
 
-- 作业二
+- [作业二](hw/hw2.html)

@@ -1,0 +1,150 @@
+---
+title: "HW 2"
+author: "Hunan U"
+format: html
+number-sections: true
+theme: none
+html-math-method: mathml
+---
+
+## 作业说明
+
+从 Q1 和 Q2 中选做一题即可.
+
+你需要使用 Rmarkdown 或 Quarto 来复现 (replicate) 我的结果. 提交作业时, 你需要同时提交源文件 (Rmd 或 Qmd) 以及生成的 HTML 文件. 请将你的所有文件以压缩包的形式 (ZIP) 上传. 压缩格式不要用 RAR, 用 ZIP.
+
+完成作业的过程中,
+你会遇到一些你没见过的函数, 如 `quantile()`. 
+你可以使用命令 `?quantile` 来查询相关文档, 一般看看最下方的例子 Examples 即可.
+
+即使设定了相同的随机数种子, 你的最终结果仍可能和我的不同.
+这可能是因为 (i) 我们使用的再抽样计算方法不同 和 (ii) 我们使用的 R 或相关包的版本不一样.
+鉴于此, 设定相同的随机数种子后,
+即使你的结果和我不完全一致也没关系. 只要你的方法是正确的即可.
+
+## Q1: 自助法
+
+考虑 `MASS` 包中的 `Boston` 数据集, 本问题只会用到其中的房价中位数数据 `medv`.
+
+```{r}
+library(MASS)
+set.seed(1)
+medv = Boston$medv
+```
+
+
+1. 使用函数 `mean()` 计算 `medv` (房价中位数)的样本均值, 记为 `medv.mean`.
+
+```{r, include=FALSE}
+medv.mean = mean(medv)
+```
+
+```{r}
+medv.mean
+```
+
+计算得到的样本均值 `medv.mean` 可视作对总体均值的估计, $\hat{\mu}$. 我们接下来计算 $\hat{\mu}$ 的标准误.
+
+2. 用样本的标准差除以样本大小的平方根, 来计算 $\hat{\mu}$ 的标准误. 
+
+```{r, include=FALSE}
+medv.err = sd(medv)/sqrt(length(medv))
+```
+
+```{r}
+medv.err
+```
+
+3. 用自助法进行 `K=1000` 次再抽样, 计算 $\hat{\mu}$ 的标准误, 并和上一问中的结果进行比较.
+
+- 注: 你可以模仿 notes 中给丫丫称重的例子, 用 `sample` 函数进行有放回的再抽样; 也可以直接调用 `boot` 包中的 `boot` 函数进行计算: `boot(data, estimator_fun, K)`. 
+
+```{r, include=FALSE}
+boot.fn = function(data, index) {
+  mean(data[index])
+} 
+```
+
+```{r}
+library(boot)
+bstrap = boot(medv, boot.fn, 1000)
+bstrap
+```
+
+4. 基于自助法的结果, 给出对 medv 均值的 95% 置信区间.
+你可以使用公式 $[\hat{\mu} - 2 SE(\hat{\mu}) , \hat{\mu} + 2 SE(\hat{\mu})]$ 来得到这个置信区间, 将它与 `t.test(medv)` 的结果进行比较.
+
+
+```{r, include=FALSE}
+boot.se = 0.4106622
+```
+
+
+```{r}
+c(bstrap$t0 - boot.se, bstrap$t0 + 2 * boot.se)
+```
+
+```{r}
+t.test(medv)
+```
+
+
+5. 给出 `medv` 总体中位数的估计, $\hat{\mu}_{med}$.
+
+```{r, include=FALSE}
+medv.med = median(medv)
+```
+
+```{r}
+medv.med
+```
+
+6. 使用自助法计算 $\hat{\mu}_{med}$ 的标准误.
+
+```{r, include=FALSE}
+boot.fn = function(data, index) {
+    median(data[index])
+}
+```
+
+```{r}
+boot(medv, boot.fn, 1000)
+```
+
+
+7. 使用 `quantile()` 函数,
+给出 `medv` 的10%-分位数的估计, 记作 $\hat{\mu}_{0.1}$. 
+
+```{r, include=FALSE}
+medv.tenth = quantile(medv, 0.1)
+```
+
+```{r}
+medv.tenth
+```
+
+
+8. 使用自助法估计 $\hat{\mu}_{0.1}$ 的标准误.
+
+```{r, include=FALSE}
+boot.fn = function(data, index) {
+   quantile(data[index], 0.1)
+}
+```
+
+
+```{r}
+boot(medv, boot.fn, 1000)
+```
+
+## Q2: 交叉验证, 压缩估计
+
+本问题考虑 Boston 数据集, 我们尝试预测其中的 "人均犯罪" (`crim`) 这个变量.
+
+1. 分别使用最优子集选择 (Best subset selection), LASSO,
+岭回归的方法来预测 `crim`.
+
+2. 使用交叉验证来评价这三个模型的预测效果,
+哪个模型的预测效果最好?
+
+3. 你的模型是否包括了所有可能用到的特征 (features)? 为什么?
