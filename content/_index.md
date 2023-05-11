@@ -26,18 +26,18 @@ by John Hull.
 ## 课堂资料
 
 4月14: 统计学习简介 (ISLR Ch2)
-- 课程说明 [PDF](slides/w1a-course-intro.pdf),
+- 课程说明 [slides](slides/w1a-course-intro.pdf),
 [source](slides/w1a-course-intro.marp);
 - 监督学习与非监督学习
-[PDF](slides/w1b-intro-stat.pdf),
+[slides](slides/w1b-intro-stat.pdf),
 [source](slides/w1b-intro-stat.pdf);
 - 监督学习简介, bias-variance tradeoff
-[PDF](slides/w1c-intro-stat-learning.pdf),
+[slides](slides/w1c-intro-stat-learning.pdf),
 [source](slides/w1c-intro-stat-learning.marp).
 
 
 4月21: 线性模型 (ISLR Ch3)
-- 一元回归 [PDF](slides/w2a-linear-regression.pdf), [source](slides/w2a-linear-regression.marp);
+- 一元回归 [slides](slides/w2a-linear-regression.pdf), [source](slides/w2a-linear-regression.marp);
 [最小二乘动图](slides/fig/LS.gif);
 - 多元回归 [PDF](slides/w2b-multi-linear.pdf),
 [source](slides/w2b-multi-linear.marp) 
@@ -56,19 +56,23 @@ by John Hull.
 [notes](notes/lab-linear.html)
 [source](notes/lab-linear.qmd)
 - 交叉验证 (Cross-validation)
-[PDF](slides/cv.pdf),
+[slides](slides/cv.pdf),
 [source](slides/cv.marp)
 - 统计学实验: 自助法
 [notes](notes/lab-boot.html),
 [source](notes/lab-boot.qmd)
 
-5月12: 收缩估计 Shrinkage Estimation (ISLR Ch6)
+5月12: 收缩估计和数据降维 (ISLR Ch6)
 
 - 统计学实验: James-Stein 统计量
 [notes](notes/w3-JS.html),
 [source](notes/w3-JS.qmd)
+- Lasso, Ridge Regression
+[slides](slides/shrinkage.pdf),
+[source](slides/shrinkage.marp)
 
-- LASSO, 岭回归 Ridge Regression
+
+
 
 
 ## 作业
