@@ -1,0 +1,228 @@
+---
+title: "Shrinkage"
+author: "Hunan U"
+format: html
+number-sections: true
+theme: none
+html-math-method: mathml
+---
+
+Here we apply the Shrinkage methods (Ridge regression and lasso) to the `Hitters` data.
+The dataset is available in the R package,
+`ISLR`.
+
+## Data info
+
+We wish to predict a baseball player’s `Salary` on the basis of various statistics associated with performance in the previous year.
+
+
+```{r}
+library(ISLR)
+names(Hitters)
+```
+
+```{r}
+dim(Hitters)
+```
+
+Some `salary` data are missing in the dataset, which are represented as `NA` in R.
+In that case, most operations on Salary will also return `NA`:
+
+
+```{r}
+mean(Hitters$Salary)
+```
+
+
+The `na.omit()` function removes all of the rows that have missing values in any variable:
+
+```{r}
+Hitters=na.omit(Hitters)
+dim(Hitters)
+mean(Hitters$Salary)
+```
+
+## `glmnet`
+
+We will use the `glmnet` package in order to perform ridge regression and the lasso. 
+The main function in this package is `glmnet()`, which can be used to fit ridge regression models, lasso models, and more. 
+
+This function has slightly different syntax from other model-fitting functions that we have encountered. In particular, we must pass in an `x` matrix as well as a `y` vector, and we do not use the `y ∼ x` syntax. 
+
+We will now perform ridge regression and the lasso in order to predict `Salary` on the `Hitters` data. 
+
+
+```{r}
+x = model.matrix(Salary ~ ., Hitters)[,-1]
+y = Hitters$Salary
+```
+
+
+The `model.matrix()` function is particularly useful for creating `x`; 
+not only
+does it produce a matrix corresponding to the 19 predictors, but it also
+automatically transforms any qualitative variables into dummy variables.
+
+
+The latter property is important because `glmnet()` can only take numerical,
+quantitative inputs.
+
+
+## Ridge regression
+
+
+The `glmnet()` function has an `alpha` argument that determines what type
+of model is fit.
+
+- If `alpha=0`, then a ridge regression model is fit;
+- if `alpha=1`, then a lasso model is fit.
+
+We first fit a ridge regression model.
+
+
+
+```{r, message=FALSE}
+library(glmnet)
+grid = 10^seq(10,-2,length=100)
+ridge.mod = glmnet(x,y,alpha=0,lambda = grid)
+```
+
+
+By default, the `glmnet()` function performs ridge regression for an automatically selected range of $λ$ values. However, here we have chosen to implement
+the function over a grid of values ranging from $λ = 10^{10}$ to $λ = 10^{−2}$.
+
+
+By default, the `glmnet()` function standardizes the variables so that they are on the same scale. This can be expected as we always scale the data first before performing lasso or ridge regrression.
+
+Associated with each value of $λ$ is a vector of ridge regression coefficients,
+stored in a matrix that can be accessed by `coef()`.
+
+```{r}
+dim(coef(ridge.mod))
+```
+
+When a large $λ$ is used,
+we expect the coefficient estimates to be much smaller, in terms of $\ell_2$ norm.
+
+```{r}
+plot(colSums(coef(ridge.mod)^2))
+```
+
+
+## Cross-validation
+
+We need to do cross-validation to select the tuning parameter $\lambda$.
+To do that,
+We can use the built-in cross-validation function, `cv.glmnet()`. 
+
+By default, the function performs ten-fold cross-validation. This can be changed using the argument `nfolds`. 
+
+Note that we set a random seed first so our results will be reproducible, since the choice of the cross-validation folds is random.
+
+
+```{r}
+train = sample(1:nrow(x), nrow(x)/2)
+test = (-train)
+y.test = y[test]
+```
+
+
+```{r}
+set.seed (1)
+cv.out = cv.glmnet(
+  x[train,],
+  y[train],
+  alpha=0)
+plot(cv.out)
+bestlam = cv.out$lambda.min
+bestlam
+```
+
+What is the test MSE associated with this value of lambda?
+
+```{r}
+ridge.pred = predict(
+    ridge.mod,
+    s = bestlam,
+    newx = x[test,])
+mean((ridge.pred-y.test)^2)
+```
+
+
+As comparison, the test MSE using LS is:
+
+
+```{r, warning=FALSE}
+lm1 = lm(y ~ x, subset = train)
+lm.pred = predict(
+    lm1,
+    newx=x[test,])
+mean((lm.pred - y[test])^2)
+```
+
+
+Finally, we refit our ridge regression model on the full data set, using the value of $λ$ chosen by cross-validation, and examine the coefficient estimates.
+
+```{r}
+predict(
+  glmnet(x,y,alpha=0),
+  type="coefficients",
+  s=bestlam)[1:20,]
+```
+
+
+As expected, none of the coefficients are zero, since ridge regression does not perform
+feature selection.
+
+
+## Lasso
+
+The process of performing a lasso fit is almost the same, except that
+we use the argument `alpha=1`.
+
+```{r message=FALSE}
+lasso.mod = glmnet(
+    x[train ,],
+    y[train],
+    alpha=1,
+    lambda=grid)
+```
+
+
+```{r}
+plot(lasso.mod)
+```
+
+We now perform cross-validation and compute the associated test error.
+
+
+```{r}
+set.seed(1)
+cv.out = cv.glmnet(
+    x[train ,],
+    y[train],
+    alpha=1)
+plot(cv.out)
+
+bestlam = cv.out$lambda.min
+lasso.pred = predict(
+    lasso.mod,
+    s=bestlam,
+    newx=x[test,])
+mean((lasso.pred-y.test)^2)
+```
+
+This is similar to the test MSE of ridge regression with λ
+chosen by cross-validation.
+However, the lasso has a substantial advantage over ridge regression in that the resulting coefficient estimates are sparse. 
+
+Here we see that 12 of the 19 coefficient estimates are exactly zero. So the lasso model with λ chosen by cross-validation contains only seven variables.
+
+```{r}
+lasso.coef = predict(
+    glmnet(x,y,alpha=1,lambda=grid),
+    type="coefficients",
+    s=bestlam)[1:20,]
+lasso.coef
+```
+
