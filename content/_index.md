@@ -67,19 +67,18 @@ by John Hull.
 - 统计学实验: James-Stein 统计量
 [notes](notes/w3-JS.html),
 [source](notes/w3-JS.qmd)
-
 - Lasso, Ridge Regression
 [slides](slides/shrinkage.pdf),
 [source](slides/shrinkage.marp)
-
-
 - 数据降维 (Dimension Reduction)
 [slides](slides/pcr.pdf),
 [source](slides/pcr.marp)
-
 - 统计学实验: Lasso 和 Ridge Regression
 [notes](notes/lab-lasso.html),
 [source](notes/lab-lasso.qmd)
+
+5月19: 树方法 (ISLR Ch8)
+
 
 
 ## 作业
