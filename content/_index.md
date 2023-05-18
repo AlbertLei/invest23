@@ -52,7 +52,7 @@ by John Hull.
 
 四、5月5: 交叉验证, 自助法 (ISLR Ch5, Ch6)
 
-- [Interview with Brad Efron](https://www.bilibili.com/video/BV11t411A7Ym?p=74)
+- 采访 Brad Efron [video](https://www.bilibili.com/video/BV11t411A7Ym?p=74)
 - R 语言简介: 线性回归
 [notes](notes/lab-linear.html)
 [source](notes/lab-linear.qmd)
@@ -81,19 +81,22 @@ by John Hull.
 六、5月19: 树方法 (ISLR Ch8)
 
 
-- [Interview with Jerome Friedman](https://www.bilibili.com/video/BV11t411A7Ym/?p=75)
-
+- 采访 Jerome Friedman [video](https://www.bilibili.com/video/BV11t411A7Ym/?p=75)
 - Intro to trees
 [slides](slides/tree.pdf),
 [source](slides/tree.marp)
-
 - Bootstrap Aggregation (Bagging) and Random Forests
 [slides](slides/forest.pdf),
 [source](slides/forest.marp)
+- Boosting
+[slides](slides/boosting.pdf),
+[source](slides/boosting.marp)
+- 统计学实验: 决策树 [video](https://www.bilibili.com/video/BV1NW41177q4?p=56)
+- 统计学实验: 随机森林和提升法 [video](https://www.bilibili.com/video/BV1NW41177q4?p=57)
+- R 语言教程 (Fun with R): 
+[notes](notes/R-fun.html)
+[source](notes/R-fun.qmd)
 
-
-
-- Boosting and Variable Importance
 
 
 七、5月26: 神经网络

@@ -1,0 +1,38 @@
+---
+title: "Fun with R"
+author: "Hunan U"
+format: html
+theme: none
+html-math-method: mathml
+---
+
+R 语言很有趣. 除了可以用来进行统计计算外, 你还可以在 RStudio 里:
+
+- 制作网站
+- 制作幻灯片
+- 制作在线书籍
+- 排版写论文
+
+过去 R 主要是通过 Rmarkdown 生态的第三方包实现这些功能 (如 bookdown).
+今天更流行的做法是使用 Quarto, 它提供了一个统一的框架来完成上述所有工作.
+
+## 如何熟练使用 R
+
+把 R 和 RStudio 当一个玩具, 想到相关的应用就在里面试试. 比如
+
+1. 如何用R来说明, 自助法平均来看每次只使用了约 2/3 的样本集合的信息
+
+1. 从 [0,1] 区间上独立均匀地抽取随机数 $x_1$, $x_2$,... 记 $S_n = \sum_{j=1}^n x_j$, 抽取到 $S_n > 1$ 就停止. 记停时为 $\tau$, 如何证明 $E \tau = \frac e2$?
+
+1. 要做幻灯片/写课程论文了, 能否用 Rmarkdown/Quarto 来完成这些工作?
+
+1. ....
+
+
+R 语言很好玩. 你在使用中有新的想法,发现或疑问, 都可以再课程群分享.
+
+## R的相关资料
+
+- [R for Data Science](https://r4ds.hadley.nz/), 在线书籍
+
+- [统计之都](https://d.cosx.org/), 统计学论坛,  主要是 R 相关的帖子
