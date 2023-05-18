@@ -2,7 +2,7 @@
 
 湖南大学 2023 年春季课程.
 所有课程资料均会发布于此.
-本课程讨论统计学习(or 机器学习)在金融经验研究中的应用.
+本课程讨论机器学习方法在金融经验研究中的应用.
 
 
 ## 参考书
@@ -25,7 +25,7 @@ by John Hull.
 
 ## 课堂资料
 
-4月14: 统计学习简介 (ISLR Ch2)
+一、4月14: 统计学习简介 (ISLR Ch2)
 - 课程说明 [slides](slides/w1a-course-intro.pdf),
 [source](slides/w1a-course-intro.marp);
 - 监督学习与非监督学习
@@ -36,22 +36,23 @@ by John Hull.
 [source](slides/w1c-intro-stat-learning.marp).
 
 
-4月21: 线性模型 (ISLR Ch3)
+二、4月21: 线性模型 (ISLR Ch3)
 - 一元回归 [slides](slides/w2a-linear-regression.pdf), [source](slides/w2a-linear-regression.marp);
 [最小二乘动图](slides/fig/LS.gif);
 - 多元回归 [PDF](slides/w2b-multi-linear.pdf),
 [source](slides/w2b-multi-linear.marp) 
 
 
-4月28: 模型选择, R 语言入门 (ISLR Ch6)
+三、4月28: 模型选择, R 语言入门 (ISLR Ch6)
 
 - 模型选择简介, 常见筛选准则 [PDF](slides/w3a-model-selection.pdf), [source](slides/w3a-model-selection.marp)
 - R 语言简介
 [notes](notes/w3-intro2R.html),
 [source](notes/w3-intro2R.qmd)
 
-5月5: 交叉验证, 自助法 (ISLR Ch5, Ch6)
+四、5月5: 交叉验证, 自助法 (ISLR Ch5, Ch6)
 
+- [Interview with Brad Efron](https://www.bilibili.com/video/BV11t411A7Ym?p=74)
 - R 语言简介: 线性回归
 [notes](notes/lab-linear.html)
 [source](notes/lab-linear.qmd)
@@ -62,7 +63,7 @@ by John Hull.
 [notes](notes/lab-boot.html),
 [source](notes/lab-boot.qmd)
 
-5月12: 收缩估计和数据降维 (ISLR Ch6)
+五、5月12: 收缩估计和数据降维 (ISLR Ch6)
 
 - 统计学实验: James-Stein 统计量
 [notes](notes/w3-JS.html),
@@ -77,8 +78,29 @@ by John Hull.
 [notes](notes/lab-lasso.html),
 [source](notes/lab-lasso.qmd)
 
-5月19: 树方法 (ISLR Ch8)
+六、5月19: 树方法 (ISLR Ch8)
 
+
+- [Interview with Jerome Friedman](https://www.bilibili.com/video/BV11t411A7Ym/?p=75)
+
+- Intro to trees
+[slides](slides/tree.pdf),
+[source](slides/tree.marp)
+
+- Bootstrap Aggregation (Bagging) and Random Forests
+[slides](slides/forest.pdf),
+[source](slides/forest.marp)
+
+
+
+- Boosting and Variable Importance
+
+
+七、5月26: 神经网络
+
+- TBD
+
+八、6月2: [小组报告论文](notes/list)
 
 
 ## 作业
