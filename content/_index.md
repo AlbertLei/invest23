@@ -62,6 +62,11 @@ by John Hull.
 - 统计学实验: 自助法
 [notes](notes/lab-boot.html),
 [source](notes/lab-boot.qmd)
+- 统计学实验: 使用 **boot** 包进行自助法估计
+[notes](notes/lab-boot2.html),
+[source](notes/lab-boot2.qmd)
+
+
 
 五、5月12: 收缩估计和数据降维 (ISLR Ch6)
 
@@ -97,13 +102,17 @@ by John Hull.
 [notes](notes/R-fun.html)
 [source](notes/R-fun.qmd)
 
-
-
 七、5月26: 神经网络
 
 - TBD
 
+
+- 科普文: [交叉熵和 KL 散度](https://zhuanlan.zhihu.com/p/573385147)
+
+
 八、6月2: [小组报告论文](notes/list)
+
+
 
 
 ## 作业
