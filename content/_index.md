@@ -17,8 +17,9 @@ by Gareth James, Daniela Witten, Trevor Hastie, Robert Tibshirani.
 可以参考[这个 github 项目](https://github.com/hardikkamboj/An-Introduction-to-Statistical-Learning).
 我们课上只讲 R, 但你可以用任何你喜欢和擅长的工具来完成课程作业.
 
+[2] [*R for Statistical Learning*](https://daviddalpiaz.github.io/r4sl/), 在线书籍.
 
-[2] *Machine Learning in Business: An Introduction to the World of Data Science*,
+[3] *Machine Learning in Business: An Introduction to the World of Data Science*,
 by John Hull.
 
 - 英文第二版 [PDF](notes/ml_john_jull.pdf)
@@ -85,7 +86,6 @@ by John Hull.
 
 六、5月19: 树方法 (ISLR Ch8)
 
-
 - 采访 Jerome Friedman [video](https://www.bilibili.com/video/BV11t411A7Ym/?p=75)
 - Intro to trees
 [slides](slides/tree.pdf),
@@ -96,15 +96,21 @@ by John Hull.
 - Boosting
 [slides](slides/boosting.pdf),
 [source](slides/boosting.marp)
-- 统计学实验: 决策树 [video](https://www.bilibili.com/video/BV1NW41177q4?p=56)
-- 统计学实验: 随机森林和提升法 [video](https://www.bilibili.com/video/BV1NW41177q4?p=57)
+- 统计学实验: 决策树
+[notes](notes/tree.html),
+[source](notes/tree.qmd),
+[video](https://www.bilibili.com/video/BV1NW41177q4?p=56)
+- 统计学实验: 随机森林
+[notes](notes/random_forest.html)
+[source](notes/random_forest.qmd)
+[video](https://www.bilibili.com/video/BV1NW41177q4?p=57)
 - R 语言教程 (Fun with R): 
 [notes](notes/R-fun.html)
 [source](notes/R-fun.qmd)
 
 七、5月26: 神经网络
 
-- TBD
+
 
 
 - 科普文: [交叉熵和 KL 散度](https://zhuanlan.zhihu.com/p/573385147)
