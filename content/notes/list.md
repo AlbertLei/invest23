@@ -32,7 +32,7 @@
 ## Paper List
 
 - 下面提供的论文仅供参考. 你也可以从其他的地方寻找文章; 只要最后的报告文章, "涉及到机器学习和金融"即可. 你可以从每篇文章的文献综述部分出发, 按图索骥, 找一篇你感兴趣的进行报告.
-- 尽管论文挑选的唯一标准是"涉及到机器学习和金融", 教师**建议**大家 (i) 尽量找新一点的文献 (ii) 尽量选英文文章, 最好是在 Top 期刊已经发表的文章, 因为学生往往很难自行判断文章好坏.
+- 尽管论文挑选的唯一标准是 "涉及到机器学习和金融", 教师**建议**大家 (i) 尽量找新一点的文献 (ii) 尽量选英文文章, 最好是在 Top 期刊已经发表的文章, 因为学生往往很难自行判断文章好坏.
 
 Lasso and market returns predictions
 
@@ -44,6 +44,7 @@ Machine learning v.s. traditional methods in measuring asset risk premiums
 
 - Gu, Kelly and Xiu. 2020.
 [Empirical Asset Pricing via Machine Learning](../papers/xiu2020.pdf). *Review of Financial Studies*
+   - Also, read the online appendix and the [empirical exercise](https://bookdown.org/voigtstefan/advanced_empirical_finance_2023/empirical-asset-pricing-via-machine-learning.html)
 
 
 Trees and portfolio

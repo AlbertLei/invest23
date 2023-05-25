@@ -117,6 +117,8 @@ by John Hull.
 
 - 深度学习简介 幻灯片 [PDF](slides/DL_invest.pdf)
 - 科普文: [交叉熵和 KL 散度](https://zhuanlan.zhihu.com/p/573385147)
+- 神经网络简介 by 3blue1brown [视频](https://www.bilibili.com/video/BV1bx411M7Zx/)
+
 
 ### 八、6月2: [小组报告论文](notes/list)
 
@@ -125,9 +127,11 @@ by John Hull.
 
 - 作业1: [作业说明](hw/hw1), [HW1 在线提交地址]
 - 作业2: [作业说明](hw/hw2.html), [HW2 在线提交地址]
-- 作业3: [作业说明](hw/hw3)
+- 作业3: [作业说明](hw/hw3), [HW3 在线提交地址]
 
 
 [HW1 在线提交地址]: https://workspace.jianguoyun.com/inbox/collect/c45b72070ad54b349b5ab5bd9877e76c/submit
 
 [HW2 在线提交地址]: https://send2me.cn/NpIKBVgU/TymRBmWj1yeuvQ
+
+[HW3 在线提交地址]: https://send2me.cn/XFrgGkyv/SCCGqmE6jcmOAg
