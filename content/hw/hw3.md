@@ -4,7 +4,7 @@
 
 教科书配套的 R 包 `ISLR2` 提供了非常丰富的数据集:
 
-![](datasets.png)
+![](../fig/datasets.png)
 
 当你运行 `library(ISLR2)` 时, 这些相关的数据集就已经加载到你当下的工作空间中. 以数据集 `Wage` 为例,
 你可以运行 `?Wage` 来查看相关文档,
