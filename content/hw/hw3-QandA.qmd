@@ -1,0 +1,71 @@
+---
+title: "作业三疑问解答"
+author: "Hunan U"
+format: html
+theme: none
+html-math-method: mathml
+number-sections: true
+---
+
+## 问题1
+
+我选择的 `Weekly` 数据集. 用函数 `cor()`
+计算相关性矩阵式时, R 报错, 错误信息:
+
+> `x` 必需为数值. 
+
+这是什么意思?
+
+### 回复
+
+`Weekly` 数据集包含下列 9 个变量:
+
+```{r}
+library(ISLR2)
+names(Weekly)
+```
+
+其中变量 `Direction` 不是数值型 (numeric) 的. 它表示股票的涨跌, 取值为 `Down` 或 `Up`. 
+
+我们使用负号 `-` 语法, 可以从数据集中删去这个变量:
+
+```{r}
+cor(Weekly[, -9])
+```
+
+- 上面用 `-9`, 是因为变量 `Direction` 在数据集中的第9 个变量, 你可以在
+`names(Weeky)` 中数一数. 如果你想让 R 来告诉你, 到底 `Direction` 在
+`names(Weekly)` 中排第几, 可以用 `match()` 函数:
+
+```{r}
+match("Direction", names(Weekly))
+```
+
+综上所述, 你可以把 `cor(Weekly[, -9])` 写为
+`cor(Weekly[, -match("Direction", names(Weekly))])`.
+
+### 补充说明
+
+R 中, 变量 `Direction` 的类型是 factor:
+
+```{r}
+str(Weekly$Direction)
+```
+
+你可以把它理解成一种 "特殊的字符串".
+这里变量 `Direction` 取值 "Up", "Down" 都是字符串.
+
+factor 型变量都是定性的 (qualitative),
+而不是定量的 (quantitative).
+你们在统计或计量里肯定学过, 对于定性的预测变量,
+跑回归前应该把它转化成哑变量 (dummy variable).
+
+一般情况下, R 中用来跑回归的函数 (`lm`,
+`tree` 等) 会自动帮你完成哑变量的转变,
+用户无需手工设置变量.
+
+
+
+
+
+

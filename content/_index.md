@@ -125,9 +125,13 @@ by John Hull.
 
 ## 作业
 
-- 作业1: [作业说明](hw/hw1), [HW1 在线提交地址]
-- 作业2: [作业说明](hw/hw2.html), [HW2 在线提交地址]
-- 作业3: [作业说明](hw/hw3), [HW3 在线提交地址]
+作业1: [作业说明](hw/hw1), [HW1 在线提交地址]
+
+作业2: [作业说明](hw/hw2.html), [HW2 在线提交地址]
+
+
+作业3: [作业说明](hw/hw3), [HW3 在线提交地址]
+- [Q&A](hw/hw3-QandA.html)
 
 
 [HW1 在线提交地址]: https://workspace.jianguoyun.com/inbox/collect/c45b72070ad54b349b5ab5bd9877e76c/submit
