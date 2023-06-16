@@ -120,7 +120,14 @@ by John Hull.
 - 神经网络简介 by 3blue1brown [视频](https://www.bilibili.com/video/BV1bx411M7Zx/)
 
 
-### 八、6月2: [小组报告论文](notes/list)
+### 八、6月2: [小组报告论文](pre)
+
+<!--
+
+[判断题](notes/quick)
+
+-->
+
 
 
 ## 作业

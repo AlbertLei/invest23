@@ -4,6 +4,7 @@ author: "Hunan U"
 format: html
 theme: none
 html-math-method: mathml
+css: "/pandoc.css"
 ---
 
 R 语言很有趣. 除了可以用来进行统计计算外, 你还可以在 RStudio 里:
