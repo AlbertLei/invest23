@@ -1,0 +1,579 @@
+---
+marp: true
+theme: gaia
+paginate: true
+math: katex
+---
+
+<style>
+:root {
+  font-family: "Fira Sans", "LXGW WenKai";
+}
+
+h1, h2, h3 {
+  text-align: center;
+}
+
+h1 {
+  font-size: 1.1em;
+  color: #555;    
+}
+
+h2, h3 {
+  font-size: 1em;
+  font-weight: normal;
+}
+
+b, strong {
+   color: blue;
+}
+
+b, em {
+   color: red;
+}
+
+.columns {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+</style>    
+
+<!-- _theme: reveal -->
+<br><br>
+
+# Introduction to Supervised Learning
+
+# 金融投资学
+
+<br>
+
+## Instructor: Haoran LEI
+
+## Hunan University
+
+---
+
+# A marketing example
+
+- Bob founded a company selling baby shoes.
+  He advertised the company products via TV, Radio and Newspaper.
+
+- Given the history data of **Sales** and advertising expense on **TV**, **Radio** and **Newspaper**, can we  
+
+  - predict "Sales" using these three inputs?
+  - know how can Bob advertise his goods better given a budget set on advertising?
+
+- What's your advice to Bob?
+
+---
+
+![](fig/ads.png)
+
+--- 
+
+Bob can do better using a **model**:
+$$
+\texttt{Sales} \approx f( \texttt{TV}, \texttt{Radio}, \texttt{Newspaper}).
+$$
+
+- `Sales` is a **response** or **target** that Bob wishes to predict
+
+- `TV` is a **feature**, or **input**, or **predictor**. We name it $X_1$
+- Likewise, `Radio` is named as $X_2$, and so on.
+$$
+  \begin{align*}
+    X &= \begin{pmatrix}
+           X_{1} \\
+           X_{2} \\ 
+           X_{3}
+         \end{pmatrix}, X \textsf{ is called the input vector.} 
+  \end{align*}
+$$
+
+---
+
+- Bob can write his model as:
+$$
+Y = f(X) + \epsilon
+$$
+
+- where $\epsilon$ captures measurement errors and other discrepancies.
+
+- What can Bob do with $f$?
+
+
+---
+
+With a good $f$, Bob can
+
+- make predictions of sales ($Y$) at new points $X=x$;
+
+- understand which components of $X$ are important in explaining $Y$, and which are irrelevant;
+  - In the salary case, "Seniority" and "Years of
+Education" are have a big impact on Income, but "Marital Status" typically does not.
+
+- Depending on the complexity of $f$, we may be able to understand how each component $X_j$ of $X$ affects $Y$.
+
+---
+
+# The ideal $f(x)$, expected value and regression function
+
+- Is there an ideal $f(X)$?
+
+- What is a good value for $f(X)$ given a specific value of $X$, say $X=4$?
+
+
+---
+
+# The ideal $f(x)$ and expected value
+
+- Is there an ideal $f(X)$?
+
+- What is a good value for $f(X)$ given a specific value of $X$, say $X=4$?
+
+
+Theoretically, a **very good** value will be
+$$
+f(4) = \mathbb E [Y | X=4]
+$$
+
+- pronounced as "the expected value of Y given X being 4".
+
+So, the ideal $f$ is $f(x) = \mathbb E (Y|X=x)$, the **regression function**.
+
+---
+
+# Regression function
+
+
+- $f(x) = \mathbb E [Y | X=x]$ is formally called the **regression function**.
+
+To make a **prediction**, we are calculating the **conditional expectations** of $Y$ given $X$:
+$$
+f(x) = {\color{blue} f(x_1, x_2, x_3)} = E [Y | X_1=x_1,X_2=x_2,X_3=x_3]
+$$
+
+---
+
+Example: Use $f(4)$ as a prediction for $Y$ given $X=4$.
+
+![width:1100](fig/regression-eg.png)
+
+---
+
+# How to estimate $f$
+
+- Typically, Bob has few (if any) data points with $X=4$ exactly.
+
+- So we cannot compute $E[Y | X =x]$!
+
+- A good estimate $\hat f$ of $f$ at $x$ is
+$$
+\hat f(x) = \textsf{Ave} (Y | X \in \mathcal N(x))
+$$
+where $\mathcal N(x)$ is some **neighborhood** of $x$.
+
+---
+
+Example: estimate $\hat f(4)$
+
+
+![width:1200](fig/neighborhood.png)
+
+---
+
+# Nearest neighbor: pros and cons
+
+Nearest neighbor averaging can be pretty good for small $p$ $\text{--}$ ie, $p \le 4$ and large $N$
+
+- We'll  discuss smoother version, such as kernel and spline smoothing later.
+
+Nearest neighbor method is likely to perform poorly
+when *p* is large.
+
+- **The curse of dimensionality**.
+
+---
+
+# Nearest neighbor and the curse of dimensionality
+
+
+Nearest neighbors estimates, $\hat f(x)$,
+tend to be **far away** in high dimensions.
+
+
+- We need to get a reasonable fraction of the $N$ values of $y_i$
+to average to bring the variance down, say 10%
+
+- However, a 10% neighborhood in high dimensions need no longer be local, so we lose the spirit of estimating  
+ $\mathbb E(Y |X = x)$ by local averaging.
+
+
+
+---
+
+![width:1100](fig/curse.png)
+
+<center>
+The curse of dimensionality: illustration
+</center>
+
+---
+
+# Parametric and structured models
+
+
+
+The linear model is an important example of a parametric
+model:
+$$
+f_L(X) = \beta_0 + \beta_1 X_1 + \dots + \beta_p X_p
+$$
+
+- A linear model is specified by $p + 1$ parameters: the $\beta$'s
+
+- Estimate the parameters by fitting the model to
+**training data**.
+
+---
+
+# Why linear model
+
+- Linear models are almost never "correct"...
+  - Being correct means that the true relationship
+    $f(X)$ is linear in $X_1, \dots, X_p$ 
+
+- However, a linear model $\hat f_L(X)$ often serves as a good and **interpretable** approximation to the
+unknown $f(X)$.
+
+- In many real usages, linear models are good enough.
+
+
+---
+
+<div class="columns">
+<div>
+
+
+A linear model   
+$\hat f_L(X) = \hat \beta_0 + \hat \beta_1 X$ gives a reasonable fit:
+
+![width:550px](fig/linear-eg1)
+
+
+
+</div>
+<div>
+
+A quadratic model  
+$\hat f_Q(X) = \hat \beta_0 + \hat \beta_1 X + \hat \beta_2 X^2$ fits slightly better:
+
+![width:580px](fig/linear-eg2)
+
+
+</div>
+</div>
+
+
+
+---
+Simulated example. Red points are simulated values for income from the model (**the blue surface**):  
+<center>
+
+![](fig/sim1)
+
+</center>
+
+---
+
+Linear regression model fit to the simulated data:
+<center>
+
+![](fig/sim-linear)
+
+$\hat f_L = \hat\beta_0 + \hat\beta_1 \times \text{education} + \hat\beta_2 \times\text{seniority}$
+
+</center>
+
+
+---
+
+More flexible regression model $\hat f_S$(education, seniority) fit to the simulated data:
+**thin-plate spline**.
+
+<center>
+
+![](fig/spline)
+
+</center>
+
+---
+
+Indeed, we can fine-tune the roughness of the spline fit. So the fitted model makes no errors on all the training data! (**Overfitting**)
+
+<center>
+
+![](fig/overfit)
+
+</center>
+
+
+---
+
+# Trade-offs
+
+1. Prediction **accuracy** versus **interpretability**.
+    - Linear models are easy to interpret; thin-plate splines are not.
+
+2. **Good fit** versus **over-fit** or **under-fit**.
+   - How do we know when the fit is just right?
+
+3. **Parsimony** versus **black-box**
+    - In general, a simpler model involving fewer
+variables is better than a black-box predictor involving them all.
+<!-- ---
+<center>
+
+Trade-offs: comparing different algorithms
+![width:800](fig/compare)
+
+
+</center> -->
+
+
+---
+
+# Quantify model accuracy
+
+
+- Suppose we fit a model $\hat f(x)$ to some training data  
+$\textsf{Tr} = \{x_i, y_i\}_{i=1}^N$. We want to know
+how well it performs.
+
+- We could compute the average squared prediction error over $\textsf{Tr}$
+$$
+\text{MSE}_{\textsf{Tr}} = \text{Ave}_{i \in \textsf{Tr}} \big [ y_i - \hat f(x_i)\big ]^2
+$$
+
+
+---
+
+# Quantify model accuracy
+
+
+- Suppose we fit a model $\hat f(x)$ to some training data  
+$\textsf{Tr} = \{x_i, y_i\}_{i=1}^N$. We want to know
+how well it performs.
+
+- We could compute the average squared prediction error over $\textsf{Tr}$
+$$
+\text{MSE}_{\textsf{Tr}} = \text{Ave}_{i \in \textsf{Tr}} \big [ y_i - \hat f(x_i)\big ]^2
+$$
+
+- Of course, simply looking at
+$\text{MSE}_{\textsf{Tr}}$ is biased in favor for more overfit models 
+
+---
+
+# Quantify model accuracy
+
+- To overcome overfitting, we should compute MSE using *fresh* **test data**: $\textsf{Te} = \{x_i,y_i\}_{i=1}^M$
+
+$$
+\text{MSE}_{\color{blue} \textsf{Te}} = \text{Ave}_{i \in \color{blue} \textsf{Te}} \big [ y_i - \hat f(x_i)\big ]^2
+$$
+---
+
+# Quantify model accuracy
+
+- To overcome overfitting, we should compute MSE using fresh **test data**: $\textsf{Te} = \{x_i,y_i\}_{i=1}^M$
+
+$$
+\text{MSE}_{\color{blue} \textsf{Te}} = \text{Ave}_{i \in \color{blue} \textsf{Te}} \big [ y_i - \hat f(x_i)\big ]^2
+$$
+
+Principle: use *different* datasets for *training* and *testing*!
+
+- In the industry practice, a standard workflow involves three separate datasets: **training data**, **validation data** and **test data**.
+
+---
+
+# Training / Validation/ Test data
+
+Suppose we have three candidate models:
+
+1. $f_1(x_1) = \beta_0 + \beta_1 x_1$
+
+2. $f_2(x_1) = \beta_0 + \beta_1 x_1 + \beta_2 x_1^2$
+
+3. $f_3(x_1) = \beta_0 + \beta_1 x_1 + \beta_2 \sqrt{x_1}$
+
+
+
+---
+
+# Training / Validation/ Test data
+
+Suppose we have three candidate models:
+
+1. $f_1(x_1) = {\color{red}1.2} + {\color{red}0.5} x_1$
+
+2. $f_2(x_1) = {\color{red}1.5} + {\color{red}0.2} x_1 + {\color{red}0.2} x_1^2$
+
+3. $f_3(x_1) = {\color{red}1.0} + {\color{red}0.6} x_1 {\color{red} - 0.2} \sqrt{x_1}$
+
+**Step 1:** use training data to **train** all three models.  
+Usually, this is to choose $\color{red} \beta_0,\beta_1, \beta_2$ to minimize $\text{MSE}_{\textsf{Tr}}$.
+
+---
+
+# Training / Validation/ Test data
+
+Suppose we have three candidate models:
+
+1. $f_1(x_1) = {\color{red}1.2} + {\color{red}0.5} x_1$
+$\implies \text{MSE}_{\textsf{\color{red}Val}} = 30$
+
+2. $f_2(x_1) = {\color{red}1.5} + {\color{red}0.2} x_1 + {\color{red}0.2} x_1^2$
+$\implies \text{MSE}_{\textsf{\color{red}Val}} = 20$
+(Winner)
+
+3. $f_3(x_1) = {\color{red}1.0} + {\color{red}0.6} x_1 {\color{red} - 0.2} \sqrt{x_1}$
+$\implies \text{MSE}_{\textsf{\color{red}Val}} = 40$
+
+
+**Step 2:** use validation data to **select** the "best" one with minimal $\text{MSE}_{\textsf{\color{red}Val}}$.
+
+
+
+---
+
+# Training / Validation/ Test data
+
+Suppose we have three candidate models:
+
+1. $f_1(x_1) = {\color{red}1.2} + {\color{red}0.5} x_1$
+
+2. $f_2(x_1) = {\color{red}1.5} + {\color{red}0.2} x_1 + {\color{red}0.2} x_1^2$
+$\implies \text{MSE}_{\textsf{\color{red} Te}} = 28$
+
+3. $f_3(x_1) = {\color{red}1.0} + {\color{red}0.6} x_1 {\color{red} - 0.2} \sqrt{x_1}$
+
+
+**Step 3:** use test data to **assess** model performance on new data. The reported model performance should be based on the new test data.
+
+
+---
+
+# Summary
+
+To overcome overfit, use fresh data for model selection (**Validation data**): 
+
+- Otheriwse, more flexible models (that are more likely to overfit data) will always win.
+
+To have an unbiased evaluation of the selected model, use fresh data to evaluate model performance  (**Test data**).
+
+---
+
+![](fig/tr-te)  
+**Example 1:** Black curve is truth. 
+Red curve (right) is MSE on $\textsf{Te}$, grey curve is
+MSE on $\textsf{Tr}$. Orange, blue and green curves/squares correspond to fits of
+different flexibility.
+
+---
+
+![](fig/tr-te2)  
+**Example 2:** Here the truth is smoother.   
+So the smoother fit (blue) and linear model (orange) do
+well.
+
+
+
+---
+
+![](fig/tr-te3)  
+**Example 3:** Here the truth is wiggly and the noise is low.   
+So the most flexible fits (green)
+perform best.
+
+
+---
+
+# Bias-Variance Trade-off
+
+
+We have fit a model to some training data $\textsf{Tr}$.
+
+Let $(x_0, y_0)$ be a test observation
+drawn from the population.   
+If the true model is $Y = f(X) + \epsilon$, then
+$$
+\mathbb E\big[(y_0 - \hat f(x_0))^2 \big] =
+\text{Var}[\hat f(x_0)] + 
+\text{Var}[\epsilon] + \Big(\text{Bias}[\hat f(x_0)]\Big)^2
+$$
+
+---
+
+# Bias-Variance Trade-off
+
+
+We have fit a model to some training data $\textsf{Tr}$.
+
+Let $(x_0, y_0)$ be a test observation
+drawn from the population.   
+If the true model is $Y = f(X) + \epsilon$, then
+$$
+\mathbb E\big[(y_0 - \hat f(x_0))^2 \big] =
+\text{Var}[\hat f(x_0)] + 
+\text{Var}[\epsilon] + \Big(\text{Bias}[\hat f(x_0)]\Big)^2
+$$
+
+- The expectation averages over the variability of $y_0$ and the variability in $\textsf{Tr}$.
+
+- $\text{Bias}[\hat f(x_0)] = \mathbb E [\hat f (x_0)] - f(x_0)$
+
+---
+
+# Bias-Variance Trade-off
+
+$$
+\mathbb E\big[(y_0 - \hat f(x_0))^2 \big] =
+{\color{blue}\text{Var}[\hat f(x_0)]} + 
+\text{Var}[\epsilon] + {\color{red}\Big(\text{Bias}[\hat f(x_0)]\Big)^2}
+$$
+
+
+- Typically as the *flexibility* of $\hat f$ increases, its **variance increases**, and its
+<span style="color:red">bias</span>
+decreases.
+
+- So choosing the flexibility based on
+average test error amounts to a 
+_bias-variance trade-off_.
+
+
+- Bias-Variance trade-off provides a new perspective to understand overfitting. 
+
+
+---
+
+![width:1200](fig/tradeoff)  
+## Bias-variance tradeoff for the three examples
+
+---
+
+**Homework: Explain the three graphs in the previous slide**
+
+- I.e., explain the bias-variance tradeoff in the three cases in **your own words**. You do not need to use math in the explanations, but feel free to use some math if necessary.
+
+- In the first plot, the true model is non-linear and almost quadratic;
+in the second plot, the true model is almost linear;
+in the third, the true model is non-linear but the noise is very small.
+
+- Hint: You may read the Wiki on [bias-variance tradeoff](https://en.wikipedia.org/wiki/Bias%E2%80%93variance_tradeoff) for inspirations.
+
+- My Email: hlei@hnu.edu.cn

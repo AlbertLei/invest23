@@ -1,0 +1,80 @@
+---
+title: "Use **Boot** package for bootstrapping"
+author: "Hunan U"
+format: html
+number-sections: true
+theme: none
+html-math-method: mathml
+---
+
+## Use `Boot`
+
+我们可以使用 **boot** 包中的 `boot` 函数来进行自助法估计.
+下面我们仍然以给熊猫丫丫称重为例, 了解如何使用
+`boot` 函数来计算 bootstrap 标准误. 
+
+先加载 **boot** 包:
+
+```{r}
+library(boot)
+```
+
+`boot` 函数的基本语法为: `boot(data, statistic, R)`, 其中
+
+- 参数 `data` 为原始样本, 它一般是一个 向量或者数据框
+- 参数 `statistic` 是要计算标准误的估计量, 它是一个函数
+- 参数 `R` 表示再抽样的次数, 它是一个整数
+
+在计算 bootstrap 标准误时, 只需要指定这三个参数即可.
+你可以运行 `?boot::boot` 命令, 查看关于 `boot` 函数的更多说明.
+
+
+## 使用 `boot` 计算标准误
+
+这里的原始样本为熊猫丫丫的十次称重:
+
+```{r}
+k_weights <- c(93, 77, 62, 78, 75, 85, 66, 83, 91, 72)
+```
+
+
+设定随机数种子:
+
+```{r}
+set.seed(2023)
+```
+
+
+这里的统计量为丫丫体重的均值:
+
+```{r}
+boot.fn = function(data, index) {
+  mean(data[index])
+} 
+```
+
+函数 `boot.fn` 会返回参数 `data` 的均值, conditional on 对应的指标 `index`.
+
+- 如果我们直接使用所有样本数据: `boot.fn(k_weights, 1:10)`
+
+- 如果我们要进行再抽样:
+`boot.fn(k_weights, sample(1:10, size = 10, replace = TRUE))`. 我们可以通过反复再抽样来完成
+bootstrap 估计.
+
+`boot` 函数帮助我们自动完成了反复再抽样这个过程.
+下面我们使用 `boot` 函数进行 `1000` 次再抽样, 并计算标准误:
+
+```{r}
+bstrap = boot(k_weights, boot.fn, 1000)
+```
+
+和 `lm` 类似, 我们使用自助法估计得到的所有信息,
+都储存在了 `bstrap` 这个对象中.
+
+```{r}
+bstrap
+```
+
+
+我们计算得到的标准误 (`std. error`) 约为 `3.06`.
+作为对比, 我们之前使用 `sample` 函数进行再抽样计算得到的标准误约为 `3.27`.

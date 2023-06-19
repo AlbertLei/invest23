@@ -1,0 +1,136 @@
+<!doctype html>
+<html>
+<head>
+	<meta name="generator" content="Hugo 0.111.3">
+  <meta name="viewport" content="width=device-width, initial-scale=1">  
+  <meta charset="utf-8">
+  <title>金融投资2023</title>
+  <link rel="stylesheet" href="/pandoc.css">
+</head>
+
+<body>
+  <h1 id="金融投资学">金融投资学</h1>
+<p>湖南大学 2023 年春季课程.
+所有课程资料均会发布于此.
+本课程讨论机器学习方法在金融经验研究中的应用.</p>
+<h2 id="参考书">参考书</h2>
+<p>[1] <em>An Introduction to Statistical Learning,</em>
+by Gareth James, Daniela Witten, Trevor Hastie, Robert Tibshirani.
+<a href="https://book.douban.com/subject/21706191/">豆瓣页面</a>.</p>
+<ul>
+<li>英文第二版 <a href="https://hastie.su.domains/ISLR2/ISLRv2_website.pdf">PDF</a>, 书籍官网<a href="https://www.statlearning.com">链接</a> (境外网站, 可能需要科学上网)</li>
+<li>第一版中文翻译 <a href="https://hlei.lanzouf.com/iu7Qn0t6uqob">PDF</a>, 课程视频 <a href="https://www.bilibili.com/video/BV1NW41177q4/">bilibili 链接</a></li>
+<li>统计计算: 每个章节的末尾, 均有对应的 R 语言实操环节 (R Lab). 如果你写 python,
+可以参考<a href="https://github.com/hardikkamboj/An-Introduction-to-Statistical-Learning">这个 github 项目</a>.
+我们课上只讲 R, 但你可以用任何你喜欢和擅长的工具来完成课程作业.</li>
+</ul>
+<p>[2] <a href="https://daviddalpiaz.github.io/r4sl/"><em>R for Statistical Learning</em></a>, 在线书籍.</p>
+<p>[3] <em>Machine Learning in Business: An Introduction to the World of Data Science</em>,
+by John Hull.</p>
+<ul>
+<li>英文第二版 <a href="notes/ml_john_jull.pdf">PDF</a></li>
+</ul>
+<h2 id="课堂资料">课堂资料</h2>
+<h3 id="一4月14-统计学习简介-islr-ch2">一、4月14: 统计学习简介 (ISLR Ch2)</h3>
+<ul>
+<li>课程说明 <a href="slides/w1a-course-intro.pdf">slides</a>,
+<a href="slides/w1a-course-intro.marp">source</a>;</li>
+<li>监督学习与非监督学习
+<a href="slides/w1b-intro-stat.pdf">slides</a>,
+<a href="slides/w1b-intro-stat.pdf">source</a>;</li>
+<li>监督学习简介, bias-variance tradeoff
+<a href="slides/w1c-intro-stat-learning.pdf">slides</a>,
+<a href="slides/w1c-intro-stat-learning.marp">source</a>.</li>
+</ul>
+<h3 id="二4月21-线性模型-islr-ch3">二、4月21: 线性模型 (ISLR Ch3)</h3>
+<ul>
+<li>一元回归 <a href="slides/w2a-linear-regression.pdf">slides</a>, <a href="slides/w2a-linear-regression.marp">source</a>;
+<a href="slides/fig/LS.gif">最小二乘动图</a>;</li>
+<li>多元回归 <a href="slides/w2b-multi-linear.pdf">PDF</a>,
+<a href="slides/w2b-multi-linear.marp">source</a></li>
+</ul>
+<h3 id="三4月28-模型选择-r-语言入门-islr-ch6">三、4月28: 模型选择, R 语言入门 (ISLR Ch6)</h3>
+<ul>
+<li>模型选择简介, 常见筛选准则 <a href="slides/w3a-model-selection.pdf">PDF</a>, <a href="slides/w3a-model-selection.marp">source</a></li>
+<li>R 语言简介
+<a href="notes/w3-intro2R.html">notes</a>,
+<a href="notes/w3-intro2R.qmd">source</a></li>
+</ul>
+<h3 id="四5月5-交叉验证-自助法-islr-ch5-ch6">四、5月5: 交叉验证, 自助法 (ISLR Ch5, Ch6)</h3>
+<ul>
+<li>采访 Brad Efron <a href="https://www.bilibili.com/video/BV11t411A7Ym?p=74">video</a></li>
+<li>R 语言简介: 线性回归
+<a href="notes/lab-linear.html">notes</a>
+<a href="notes/lab-linear.qmd">source</a></li>
+<li>交叉验证 (Cross-validation)
+<a href="slides/cv.pdf">slides</a>,
+<a href="slides/cv.marp">source</a></li>
+<li>统计学实验: 自助法
+<a href="notes/lab-boot.html">notes</a>,
+<a href="notes/lab-boot.qmd">source</a></li>
+<li>统计学实验: 使用 <strong>boot</strong> 包进行自助法估计
+<a href="notes/lab-boot2.html">notes</a>,
+<a href="notes/lab-boot2.qmd">source</a></li>
+</ul>
+<h3 id="五5月12-收缩估计和数据降维-islr-ch6">五、5月12: 收缩估计和数据降维 (ISLR Ch6)</h3>
+<ul>
+<li>统计学实验: James-Stein 统计量
+<a href="notes/w3-JS.html">notes</a>,
+<a href="notes/w3-JS.qmd">source</a></li>
+<li>Lasso, Ridge Regression
+<a href="slides/shrinkage.pdf">slides</a>,
+<a href="slides/shrinkage.marp">source</a></li>
+<li>数据降维 (Dimension Reduction)
+<a href="slides/pcr.pdf">slides</a>,
+<a href="slides/pcr.marp">source</a></li>
+<li>统计学实验: Lasso 和 Ridge Regression
+<a href="notes/lab-lasso.html">notes</a>,
+<a href="notes/lab-lasso.qmd">source</a></li>
+</ul>
+<h3 id="六5月19-树方法-islr-ch8">六、5月19: 树方法 (ISLR Ch8)</h3>
+<ul>
+<li>采访 Jerome Friedman <a href="https://www.bilibili.com/video/BV11t411A7Ym/?p=75">video</a></li>
+<li>Intro to trees
+<a href="slides/tree.pdf">slides</a>,
+<a href="slides/tree.marp">source</a></li>
+<li>Bootstrap Aggregation (Bagging) and Random Forests
+<a href="slides/forest.pdf">slides</a>,
+<a href="slides/forest.marp">source</a></li>
+<li>Boosting
+<a href="slides/boosting.pdf">slides</a>,
+<a href="slides/boosting.marp">source</a></li>
+<li>统计学实验: 决策树
+<a href="notes/tree.html">notes</a>,
+<a href="notes/tree.qmd">source</a>,
+<a href="https://www.bilibili.com/video/BV1NW41177q4?p=56">video</a></li>
+<li>统计学实验: 随机森林
+<a href="notes/random_forest.html">notes</a>
+<a href="notes/random_forest.qmd">source</a>
+<a href="https://www.bilibili.com/video/BV1NW41177q4?p=57">video</a></li>
+<li>R 语言教程 (Fun with R):
+<a href="notes/R-fun.html">notes</a>
+<a href="notes/R-fun.qmd">source</a></li>
+</ul>
+<h3 id="七5月26-深度学习简介">七、5月26: 深度学习简介</h3>
+<p>注: 深度学习部分系教材第二版补充内容 <a href="notes/ch10_DL.pdf">PDF</a>.
+它属于机器学习的前沿领域, 目前发展仍十分迅速, 其中<strong>循环神经网络</strong>
+(RNN, Recurrent Neural Network) 和<strong>长短期记忆</strong> (LSTM)
+可用于金融时间序列预测问题.</p>
+<ul>
+<li>深度学习简介 幻灯片 <a href="slides/DL_invest.pdf">PDF</a></li>
+<li>科普文: <a href="https://zhuanlan.zhihu.com/p/573385147">交叉熵和 KL 散度</a></li>
+<li>神经网络简介 by 3blue1brown <a href="https://www.bilibili.com/video/BV1bx411M7Zx/">视频</a></li>
+</ul>
+<h3 id="八6月2-小组报告论文pre">八、6月2: <a href="pre">小组报告论文</a></h3>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="作业">作业</h2>
+<p>作业1: <a href="hw/hw1">作业说明</a>, <a href="https://workspace.jianguoyun.com/inbox/collect/c45b72070ad54b349b5ab5bd9877e76c/submit">HW1 在线提交地址</a></p>
+<p>作业2: <a href="hw/hw2.html">作业说明</a>, <a href="https://send2me.cn/NpIKBVgU/TymRBmWj1yeuvQ">HW2 在线提交地址</a></p>
+<p>作业3: <a href="hw/hw3">作业说明</a>, <a href="https://send2me.cn/XFrgGkyv/SCCGqmE6jcmOAg">HW3 在线提交地址</a></p>
+<ul>
+<li>作业 3 <a href="hw/hw3-QandA.html">Q&amp;A</a></li>
+</ul>
+
+</body>
+</html>

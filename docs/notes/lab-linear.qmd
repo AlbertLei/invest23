@@ -1,0 +1,345 @@
+---
+title: "R语言: 线性回归"
+author: "Hunan U"
+format: html
+number-sections: true
+theme: none
+html-math-method: mathml
+---
+
+# Vector, list and dataframe
+
+R provides two basic structures: **vector** and **list**.
+
+## Vector
+
+We have seen how to create R vectors using the combine function `c`.
+
+```{r}
+num_vec = c(1, 2, 3) # a vector of numbers
+char_vec = c("I", "love", "econ") # a vector of chars
+```
+
+R vectors are designed as a simple data structure. 
+
+- All members of a vector must be of the same type
+(such as `char`, `numeric`).
+- All vectors are flat. You cannot have a nested vector.
+
+
+```{r}
+diff_types_vec = c(1, "a", TRUE) 
+diff_types_vec
+```
+
+- Base R is very tolerant: instead of throwing an error,
+R silently converts both `1` (a numeric variable) and
+`TRUE` (a boolean variable) to characters.
+
+```{r}
+nested_vec = c(1, c(10, 15), c(1,3, c(2,6))) 
+nested_vec
+```
+
+- All vectors are flat. `c(1,c(3,4))` is the same as
+`c(1, 3, 4)`.
+
+## List
+
+If you need an object containing variables of different types, use lists.
+
+```{r}
+my_list = list(1, "a", TRUE)
+my_list
+```
+
+There are two ways 
+to extract elements from a list:
+
+- `my_list[[1]]`: this returns a number `1`
+- `my_list[1]`: this returns a list `list(1)`
+
+Lists can be nested:
+
+```{r}
+nested_list = list(1, "a", list(TRUE, 2))
+nested_list
+```
+
+## Lists vs vectors
+
+- When we are doing statistical computations (such as matrix multiplication and estimating parameters), use vectors. We only deal with numeric numbers in this case.
+
+- Lists are more sophisticated than vectors. We use
+lists when we want to store verious kinds of information in a single object.
+  - For example, in our example of linear regression last time, the object `my_lm` is indeed a list:
+  - `my_lm = lm(y ~ x, data = my_data)`
+
+
+## Dataframes
+
+`Dataframe` is a special kind of `list`.
+Like list, it can store values of different
+kinds.
+
+We use `data.frame()` to create a dataframe:
+
+```{r}
+df = data.frame(
+  name = c("Alice", "Bob", "Cindy"),
+  age = c(20, 23, 29),
+  gender = c("F", "M", "F")
+)
+df
+```
+
+- Here `df` prints like an Excel sheet.
+
+To extract the `name` information  in `df`, use
+`df$name` which works the same with
+`df[["name"]]`:
+
+```{r}
+df$name
+```
+
+
+
+
+# Boston dataset
+
+This example of linear regression is based on *Intro to Statistical Learning* (ISLR) ch3.6.
+It involves the **Boston** data set which pertains to Housing Values in Suburbs of Boston.
+
+The **Boston** data set is found in the `MASS` package.
+
+```{r}
+library(MASS)
+```
+
+
+After loading `MASS`,
+the dataset **Boston** is in your R environment. Specifically, 
+`Boston` is an object in R of type `list` (or `dataframe` here).
+
+```{r}
+typeof(Boston)
+```
+
+```{r}
+dim(Boston)
+```
+
+To get some feeling
+about the `Boston` dataset:
+
+- run `names(Boston)`,
+`head(Boston)`,
+`str(Boston)`, or 
+`summary(Boston)`
+
+- run `?Boston` to see detailed documentation of the `Boston` dataset in `MASS`
+
+```{r, eval=FALSE}
+?Boston
+```
+
+
+```
+crim
+  per capita crime rate by town.
+
+zn
+  proportion of residential land zoned for lots over 25,000 sq.ft.
+
+indus
+  proportion of non-retail business acres per town.
+
+chas
+  Charles River dummy variable (= 1 if tract bounds river; 0 otherwise).
+
+nox
+  nitrogen oxides concentration (parts per 10 million).
+
+rm
+  average number of rooms per dwelling.
+
+age
+  proportion of owner-occupied units built prior to 1940.
+
+dis
+  weighted mean of distances to five Boston employment centres.
+
+rad
+  index of accessibility to radial highways.
+
+tax
+  full-value property-tax rate per $10,000.
+
+ptratio
+  pupil-teacher ratio by town.
+
+black
+  1000*(Bk - 0.63)^2, where Bk is the proportion of blacks by town.
+
+lstat
+  lower status of the population (percent).
+
+medv
+  median value of owner-occupied homes in $1000s.
+```
+
+Another (much better) way to explore a dataset is to use plots.
+
+## Exploring data using plots
+
+```{r}
+library(ggplot2)
+qplot(crim, medv, data=Boston,
+      xlab="Crime rate",
+      ylab="Median value of homes (in thousands)")
+```
+
+Based on the plot, it seems we should focus on those observations with `crim < 25` in plotting.
+
+
+```{r,message=FALSE}
+library(dplyr)
+data_subset = tibble(crim=Boston$crim, medv=Boston$medv)
+data_subset = filter(data_subset, crim<25)
+```
+
+
+Here I use the `dplyr` package which provides
+some useful "verbs" (functions) for data manipulation.
+If you use the pipe operator
+`|>`, an equivalent (but more readable) way is:
+
+```{r}
+df = as_tibble(Boston) |>
+  select(crim, medv) |>
+  filter(crim<25)
+```
+
+
+```{r}
+qplot(crim, medv, data=df,
+      xlab="Crime rate (less than 25)",
+      ylab="Median value of homes (in thousands)")
+```
+
+
+Plot each feature against `medv`:
+
+```{r}
+library(reshape2)
+bosmelt <- melt(Boston, id="medv")
+ggplot(bosmelt, aes(x=value, y=medv))+
+  facet_wrap(~variable, scales="free")+
+  geom_point()
+```
+
+Lastly, we compute and visualize the correlation matrix:
+
+```{r}
+corr_m = cor(Boston)
+round(corr_m, 2)
+```
+
+
+```{r, message=FALSE}
+library(corrplot) # visualizing the corr matrix 
+corrplot(corr_m)
+```
+
+
+
+## Multiple linear regression
+
+We use the `lm()` function for linear regression.
+For example, the syntax `lm(y ~ x1 + x2 + x3, data)` fits a model with three predictors:
+$y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_3$.
+
+Here the `Boston` dataset contains 13 variables.
+To perform a regression using all of the predictors, use the short-hand `.`:
+
+```{r}
+fit_all = lm(medv ~ ., data = Boston)
+```
+
+- As we just discussed, `fit` is a list containing all the regression info.
+
+```{r}
+summary(fit_all)
+```
+
+Here the `summary` output still contains lots of info.
+We can use `summary(fit)$r.sq` to see the $R^2$.
+
+
+```{r}
+summary(fit_all)$r.sq # short for summary(fit_all)[["r.sq"]]
+```
+
+## Excluding certain predictors
+
+From the summary, `age` and `indus` seem to have high p-values.
+
+We can run a regression excluding these
+two predictors:
+
+```{r}
+fit_ex = lm(medv ~ . - age - indus, data=Boston)
+```
+
+```{r}
+summary(fit_ex)
+```
+
+## Interaction and nonlinear terms
+
+- The syntax `lstat:black` tells R to
+include the interaction term $\text{lstat}\times\text{black}$.
+
+- The syntax `lstat*age` simultaneously include `lstat`, `age`, and the interaction term `lstat:black` as predictors:
+
+```{r}
+summary(lm(medv ~ lstat*age, data=Boston))
+```
+
+
+To include the quadratic term `X^2`, use
+`I(X^2)`:
+
+- The special function `I()` is needed since the hat symbol `^`  has a special meaning in a formula.
+
+```{r}
+fit_nonlinear = lm(medv~lstat+I(lstat^2), data = Boston)
+summary(fit_nonlinear)
+```
+
+- The near-zero p-value associated with the quadratic term suggests that it leads to an improved model. 
+
+# Review questions
+
+1. What's the difference between vector and list?
+Explain in your own words.
+
+1. `m = matrix(1:4, nrow = 2)`. Is `m` a vector or a list?
+
+1. Is the dataset `Boston` a vector or a list?
+
+Read about the dataset (`?Boston`)
+and answer the following questions.
+
+4. How to know the number of rows and columns
+in dataset `Boston`?
+
+1. Make some pairwise scatterplots of the predictors (columns) in this data set. Describe your findings.
+
+1. Are any of the predictors associated with `crim` (per capita crime rate)? If so, explain the relationship.
+
+1. Do any of the suburbs of Boston appear to have particularly high crime rates? Tax rates? Pupil-teacher ratios? Comment on the range of each predictor.
+
+1. How many of the suburbs in this data set bound the Charles river?
+

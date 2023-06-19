@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">  
+        <meta charset="utf-8">
+        <title>金融投资2023</title>
+        <link rel="stylesheet" href="/pandoc.css">
+    </head>      
+<body>
+  <ol>
+<li>
+<p>Explain why the &ldquo;Nearest Neighbors&rdquo; algorithm fails in a high-dimensional setting.</p>
+</li>
+<li>
+<p>True or False?
+Suppose we are interested in learning about a relationship between <em>X</em> and <em>Y</em>.
+The estimate b₂ in a linear regression that <strong>controls for many variables</strong> is usually a more reliable measure of a causal relationship than b₁ from a univariate regression on <em>X</em>.</p>
+</li>
+<li>
+<p>In R, what is the difference between <code>lm(y ~ x*z)</code> and <code>lm(y ~ I(x*z))</code>? Suppose both <code>x</code> and <code>z</code> are numeric variables.</p>
+</li>
+<li>
+<p>If we use ten-fold cross-validation as a means of model selection, the cross-validation estimate of test error is biased upwards or downwards?</p>
+</li>
+<li>
+<p>Why can&rsquo;t we use the standard bootstrap for some time series data?</p>
+</li>
+<li>
+<p>Consider model selection among linear models. Why best subset selection may not achieve a
+lower test RSS than forward selection?</p>
+</li>
+<li>
+<p>You perform ridge regression on a problem where your second predictor, x₂, is measured in dollars. You decide to refit the model after changing x₂ to be measured in cents. Which one will change, the estimated β₂ or the estimated y?</p>
+</li>
+<li>
+<p>In tuning a LASSO model, as one increases λ from 0, what will happen to the training RSS?</p>
+</li>
+<li>
+<p>What are potential advantages of BART over random forests and boosting?</p>
+</li>
+</ol>
+<h2 id="answers">Answers</h2>
+<ol>
+<li>
+<p>For a uniform cube in a high-dimensional space (say p≥50), more than 99% percent of the mass are in the boundary of the cube. So, it usually makes no sense to find a ball centered at X
+that contains 10% of the data points.</p>
+</li>
+<li>
+<p>False.<br>
+Adding lots of extra predictors to the model can just as easily muddy the interpretation of <em>b</em> as it can clarify it. One often reads in media reports of academic studies that &ldquo;the investigators controlled for confounding variables,&rdquo; but be skeptical!</p>
+</li>
+<li>
+<p>An interaction term between a numeric <code>x</code> and <code>z</code> is just the product of <code>x</code> and <code>z</code>. The difference is that in the first model, <code>lm</code> processes the <code>*</code> operator between variables and automatically includes main effects, whereas in the latter model, the expression inside the <code>I()</code> function is not parsed as a part of the formula, but rather is simply evaluated.</p>
+</li>
+<li>
+<p>It&rsquo;s uncertain. There are competing biases:</p>
+<ul>
+<li>on one hand, the cross-validated estimate is based on models trained on smaller training sets than the full model, which means we will tend to overestimate test error for the full model.
+-On the other hand, cross-validation gives a noisy estimate of test error for each candidate model, and we select the model with the best estimate. This means we are more likely to choose a model whose estimate is smaller than its true test error rate, hence, we may underestimate test error. In any given case, either source of bias may dominate the other.</li>
+</ul>
+</li>
+<li>
+<p>The usual bootstrap algorithm samples i.i.d., so there is no serial autocorrelation (unlike what is observed in most time series). This makes the set of resampled time series very very different from the sorts of time series we actually get in the real world.</p>
+</li>
+<li>
+<p>Best subset selection fits the data too hard and is very likely to lead to overfitting.
+We only know that best subset selection will have the lowest training RSS.</p>
+</li>
+<li>
+<p>Both.</p>
+</li>
+<li>
+<p>Increasing λ will generally lead to a simpler model, and so training RSS will increase.</p>
+</li>
+<li>
+<p>As a Bayesian method, BART draws samples from a posterior distribution and hence provides standard errors and posterior confidence intervals for any quantity of interest.</p>
+</li>
+</ol>
+
+</body>
+<footer>
+  <hr/>
+  <p>Back to <a href="/">Index</a></p>
+</footer>
+</html>

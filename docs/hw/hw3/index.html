@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">  
+        <meta charset="utf-8">
+        <title>金融投资2023</title>
+        <link rel="stylesheet" href="/pandoc.css">
+    </head>      
+<body>
+  <h1 id="作业-3">作业 3</h1>
+<h2 id="问题背景">问题背景</h2>
+<p>教科书配套的 R 包 <code>ISLR2</code> 提供了非常丰富的数据集:</p>
+<p><img src="../fig/datasets.png" alt=""></p>
+<p>当你运行 <code>library(ISLR2)</code> 时, 这些相关的数据集就已经加载到你当下的工作空间中. 以数据集 <code>Wage</code> 为例,
+你可以运行 <code>?Wage</code> 来查看相关文档,
+或 <code>head(Wage)</code> 来查看它的前六个观测.</p>
+<h2 id="作业说明">作业说明</h2>
+<p>从上面的 21 个数据集中, 选择一个数据集,
+用它来训练决策树模型和随机森林模型.</p>
+<p>用 Quarto或Rmarkdown 来完成本次作业.
+你提交的作业, 格式应该类似一个小报告, 它包括以下几个部分:</p>
+<ol>
+<li>
+<p><strong>数据说明</strong>. 用中文简短地介绍这个数据集,
+以 <code>Wage</code> 为例, 你应该说明:</p>
+<blockquote>
+<p><code>Wage</code> 数据集的调查对象为美国亚特兰大中部地区3000名男性工人, 它包括11个变量, 如: <code>wage</code> (工人工资), <code>health_ins</code> (是否有健康保险), <code>maritl</code> (婚姻状况), <code>education</code> (教育程度), 等等.</p>
+</blockquote>
+</li>
+<li>
+<p><strong>探索性数据分析.</strong> 使用任何机器学习模型之前, 你都应该先了解数据集的基本特点, 做一些简单的探索性分析: 计算所有变量的最大值/最小值/均值, 画图看一看变量之间是否存在明显的线性或非线性关系, 计算相关性矩阵, 等等.</p>
+<ul>
+<li>这部分内容可以参考课程资料 <a href="https://invest23.netlify.app/notes/lab-linear.html">R语言: 线性回归</a> Section 2.1.</li>
+</ul>
+</li>
+<li>
+<p><strong>决策树模型.</strong> 首先将数据集按某个比例, 分成训练集和测试集两部分, 调用 <code>tree</code> 包来训练决策树模型, 计算模型在测试集上的均方误.</p>
+</li>
+<li>
+<p><strong>随机森林模型.</strong> 用<strong>同样</strong>的训练集和测试集, 调用 <code>randomForest</code> 包来训练随机森林模型, 计算模型在测试集上的均方误.</p>
+</li>
+</ol>
+<h2 id="注意事项">注意事项</h2>
+<ol>
+<li>
+<p>在作业的开头, 选定随机数种子 <code>set.seed(1)</code>. 确保你的结果可以在我的电脑上重复.</p>
+</li>
+<li>
+<p>我们在课堂上只介绍了回归树模型 (ie 响应变量 Y is quantitative), 没有介绍分类树 (ie 响应变量 Y is qualitative).
+如果你用的是回归树,
+那么你在选择数据集时, 应该选择那些响应变量是定量型的数据集, 比如 <code>Hitters</code> 和 <code>Wage</code>. 当然, 你也可以选择使用分类树, 学习一下教材对应章节即可.</p>
+</li>
+<li>
+<p>不能<strong>直接套用</strong>教材或课程资料里, 演示随机森林和决策树模型时用到的例子. 你应该<strong>模仿</strong>教材或课程资料里的步骤, 把它们用到新数据集上.</p>
+</li>
+<li>
+<p>类似作业二, 你需要同时提交源代码和生成的 HTML 文件, 请将它们打包压缩成 ZIP 文件后上传.</p>
+</li>
+</ol>
+
+</body>
+<footer>
+  <hr/>
+  <p>Back to <a href="/">Index</a></p>
+</footer>
+</html>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hws on 金融投资2023</title>
+    <link>/hw/</link>
+    <description>Recent content in Hws on 金融投资2023</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="/hw/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>/hw/hw1/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/hw/hw1/</guid>
+      <description>作业 1 作业一均为问答题, 你可以任选一种提交方式:
+纸质版. 手写答案, 在课上将纸质版答案交给任课老师. 请尽量做到字迹工整. 如果你自认为字迹很难辨认, 请选择提交电子版.
+电子版. 你可以使用 Word 或 LaTeX 来完成作业, 提交前请先确保文件为 PDF 格式. 教师只接受 PDF 格式的文件.
+作业一在线提交地址 问题 为什么我们在使用 Validation dataset 进行模型筛选后, 还要用另外的 Test dataset 来评估模型的预测精度? 为什么直接用 Validation dataset 来评估模型精度, 得到的结果会是有偏的?
+注: 实际应用中, 模型在 Validation dataset 上和 Test dataset 上的表现常常相差甚远. 以预测股票涨跌为例, 我们选择的模型可能在 Validation dataset 上的准确率超过 70%, 但在Test dataset 上的准确率只有不到 60%. 阅读关于 Bias-Variance tradeoff 的进一步资料: PDF. 简单谈几个教师在课上没有说到的知识点, 此题中英文回答皆可.
+阅读课上幻灯片中, 倒数第二张幻灯片中的三张图, 并解释图中体现的 bias-variance tradeoff.
+Hint: The three plots use the same data generation processes as the previous three examples.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/hw/hw3/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/hw/hw3/</guid>
+      <description>作业 3 问题背景 教科书配套的 R 包 ISLR2 提供了非常丰富的数据集:
+当你运行 library(ISLR2) 时, 这些相关的数据集就已经加载到你当下的工作空间中. 以数据集 Wage 为例, 你可以运行 ?Wage 来查看相关文档, 或 head(Wage) 来查看它的前六个观测.
+作业说明 从上面的 21 个数据集中, 选择一个数据集, 用它来训练决策树模型和随机森林模型.
+用 Quarto或Rmarkdown 来完成本次作业. 你提交的作业, 格式应该类似一个小报告, 它包括以下几个部分:
+数据说明. 用中文简短地介绍这个数据集, 以 Wage 为例, 你应该说明:
+Wage 数据集的调查对象为美国亚特兰大中部地区3000名男性工人, 它包括11个变量, 如: wage (工人工资), health_ins (是否有健康保险), maritl (婚姻状况), education (教育程度), 等等.
+探索性数据分析. 使用任何机器学习模型之前, 你都应该先了解数据集的基本特点, 做一些简单的探索性分析: 计算所有变量的最大值/最小值/均值, 画图看一看变量之间是否存在明显的线性或非线性关系, 计算相关性矩阵, 等等.
+这部分内容可以参考课程资料 R语言: 线性回归 Section 2.1. 决策树模型. 首先将数据集按某个比例, 分成训练集和测试集两部分, 调用 tree 包来训练决策树模型, 计算模型在测试集上的均方误.</description>
+    </item>
+    
+  </channel>
+</rss>

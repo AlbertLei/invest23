@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Notes on 金融投资2023</title>
+    <link>/notes/</link>
+    <description>Recent content in Notes on 金融投资2023</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="/notes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>/notes/list/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/notes/list/</guid>
+      <description>分组报告 本课程的最终成绩, 由
+三次平时作业 最后一次课堂的小组报告 共同组成. 两者各占 50 分.
+如果你缺席了最后的小组报告, 也没有提前向教师说明原因. 小组报告视作0分; 根据上面的成绩算法, 你这门课的最终成绩也不会超过50分.
+如何分组 两人或三人一组, 自行组队. 组队完成后, 派一位组员告知教师小组的成员信息. (通过QQ或邮箱说明均可)
+如果有同学5月25日前, 还没有告诉教师你的组员情况, 会被教师视作&amp;quot;落单成员&amp;quot;. 教师会在 5月26日(周五)的课堂中, 在落单的成员中进行随机匹配.
+建议大家积极寻找组员. 因为如果只有你一个人落单, 那么你就只能独自一人完成论文报告. 论文报告要求 每个小组的论文报告时间为 20 到 25 分钟. 可以全程只让一位同学进行报告, 也可以多位小组成员依次报告.
+每个小组选讲一篇论文, 论文挑选范围见下面的 Paper List.
+Paper List 下面提供的论文仅供参考. 你也可以从其他的地方寻找文章; 只要最后的报告文章, &amp;ldquo;涉及到机器学习和金融&amp;quot;即可. 你可以从每篇文章的文献综述部分出发, 按图索骥, 找一篇你感兴趣的进行报告. 尽管论文挑选的唯一标准是 &amp;ldquo;涉及到机器学习和金融&amp;rdquo;, 教师建议大家 (i) 尽量找新一点的文献 (ii) 尽量选英文文章, 最好是在 Top 期刊已经发表的文章, 因为学生往往很难自行判断文章好坏. Lasso and market returns predictions
+Rapach, D. E., J. K.</description>
+    </item>
+    
+    <item>
+      <title>Quick Q&amp;A</title>
+      <link>/notes/quick/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/notes/quick/</guid>
+      <description>Explain why the &amp;ldquo;Nearest Neighbors&amp;rdquo; algorithm fails in a high-dimensional setting.
+True or False? Suppose we are interested in learning about a relationship between X and Y. The estimate b₂ in a linear regression that controls for many variables is usually a more reliable measure of a causal relationship than b₁ from a univariate regression on X.
+In R, what is the difference between lm(y ~ x*z) and lm(y ~ I(x*z))?</description>
+    </item>
+    
+  </channel>
+</rss>
